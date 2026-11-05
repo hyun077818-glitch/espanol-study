@@ -163,7 +163,7 @@ export const CHAPTERS_DATA: Chapter[] = [
       {
         id: 'sec-2-1',
         title: '2.1 강의 정보 & 시험 평가 기준',
-        subtitle: '2026-2학기 한림대학교 스페인어 강의계획서 핵심',
+        subtitle: '2026-2학기 스페인어 강의계획서 핵심',
         rules: [
           {
             title: '수업 및 평가 구성',
@@ -914,7 +914,7 @@ export const CHAPTERS_DATA: Chapter[] = [
     ],
   },
 
-  // ================= CHAPTER 9: 한림대 스페인어 필수 단어장 =================
+  // ================= CHAPTER 9: 스페인어 필수 단어장 =================
   {
     id: 9,
     title: '제9장: 시험 필수 어휘 보물창고 (Vocabulario Esencial)',

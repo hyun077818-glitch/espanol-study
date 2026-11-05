@@ -32,7 +32,7 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() => onSelectTab('part1')}
             className="text-left font-bold text-slate-900 text-lg tracking-tight hover:text-red-700 transition-colors"
           >
-            한림대 스페인어 마스터
+            스페인어 시험대비 마스터
           </button>
         </div>
 

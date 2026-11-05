@@ -1,6 +1,6 @@
 {
-  "name": "한림대 스페인어 시험대비 마스터",
-  "description": "한림대학교 스페인어 강의 자료 기반 챕터별 이론 학습(Part 1)과 50문항 회차별 맞춤 퀴즈, 오답 인터리빙 재출제, 취약점 분석 및 챕터 연계 복습 기능(Part 2)을 제공하는 웹 애플리케이션",
+  "name": "스페인어 시험대비 마스터",
+  "description": "스페인어 강의 자료 기반 챕터별 이론 학습(Part 1)과 50문항 회차별 맞춤 퀴즈, 오답 인터리빙 재출제, 취약점 분석 및 챕터 연계 복습 기능(Part 2)을 제공하는 웹 애플리케이션",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

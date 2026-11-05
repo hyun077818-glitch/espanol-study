@@ -1,9 +1,27 @@
 import { QuizQuestion, QuizSession, MistakeItem } from '../types';
 import { QUIZ_BANK } from '../data/quizBank';
 
-const SESSION_STORAGE_KEY = 'hallym_spanish_active_session_v2';
-const MISTAKES_STORAGE_KEY = 'hallym_spanish_mistakes_bank_v2';
-const HISTORY_STORAGE_KEY = 'hallym_spanish_completed_history_v2';
+const SESSION_STORAGE_KEY = 'spanish_master_active_session_v2';
+const MISTAKES_STORAGE_KEY = 'spanish_master_mistakes_bank_v2';
+const HISTORY_STORAGE_KEY = 'spanish_master_completed_history_v2';
+
+// Migration helper from previous keys if present
+function getFromStorageWithFallback(key: string, legacyKey: string): string | null {
+  if (typeof window === 'undefined') return null;
+  const val = localStorage.getItem(key);
+  if (val) return val;
+  const legacyVal = localStorage.getItem(legacyKey);
+  if (legacyVal) {
+    try {
+      localStorage.setItem(key, legacyVal);
+      localStorage.removeItem(legacyKey);
+    } catch {
+      // ignore
+    }
+    return legacyVal;
+  }
+  return null;
+}
 
 export const TOTAL_QUESTIONS_PER_SESSION = 50;
 
@@ -61,7 +79,10 @@ export function checkAnswer(userAnswer: string, question: QuizQuestion): boolean
 export function getStoredMistakes(): MistakeItem[] {
   if (typeof window === 'undefined') return [];
   try {
-    const raw = localStorage.getItem(MISTAKES_STORAGE_KEY);
+    const raw = getFromStorageWithFallback(
+      MISTAKES_STORAGE_KEY,
+      'hallym_spanish_mistakes_bank_v2'
+    );
     return raw ? JSON.parse(raw) : [];
   } catch {
     return [];
@@ -233,7 +254,10 @@ export function saveActiveSession(session: QuizSession) {
 export function getActiveSession(): QuizSession | null {
   if (typeof window === 'undefined') return null;
   try {
-    const raw = localStorage.getItem(SESSION_STORAGE_KEY);
+    const raw = getFromStorageWithFallback(
+      SESSION_STORAGE_KEY,
+      'hallym_spanish_active_session_v2'
+    );
     return raw ? JSON.parse(raw) : null;
   } catch {
     return null;
@@ -247,6 +271,7 @@ export function clearActiveSession() {
   if (typeof window === 'undefined') return;
   try {
     localStorage.removeItem(SESSION_STORAGE_KEY);
+    localStorage.removeItem('hallym_spanish_active_session_v2');
   } catch (e) {
     console.error('Failed to clear session', e);
   }
@@ -316,7 +341,10 @@ export function finalizeSession(session: QuizSession): {
 function saveHistory(session: QuizSession) {
   if (typeof window === 'undefined') return;
   try {
-    const raw = localStorage.getItem(HISTORY_STORAGE_KEY);
+    const raw = getFromStorageWithFallback(
+      HISTORY_STORAGE_KEY,
+      'hallym_spanish_completed_history_v2'
+    );
     const history: QuizSession[] = raw ? JSON.parse(raw) : [];
     history.unshift(session);
     // Keep last 20
@@ -332,7 +360,10 @@ function saveHistory(session: QuizSession) {
 export function getHistory(): QuizSession[] {
   if (typeof window === 'undefined') return [];
   try {
-    const raw = localStorage.getItem(HISTORY_STORAGE_KEY);
+    const raw = getFromStorageWithFallback(
+      HISTORY_STORAGE_KEY,
+      'hallym_spanish_completed_history_v2'
+    );
     return raw ? JSON.parse(raw) : [];
   } catch {
     return [];

@@ -88,7 +88,7 @@ export const QuizResultModal: React.FC<QuizResultModalProps> = ({
               틀린 <strong>{incorrectCount}문제</strong>가 오답 뱅크에 안전하게 보관되었습니다. 다음 50제 생성 시 <strong>새 문제와 오답 문제가 균등하게 인터리빙</strong>되어 재출제됩니다.
             </>
           ) : (
-            <>50문항 전원 정답입니다! 한림대 스페인어 시험 준비가 완벽합니다.</>
+            <>50문항 전원 정답입니다! 스페인어 시험 준비가 완벽합니다.</>
           )}
         </p>
 

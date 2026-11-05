@@ -69,7 +69,7 @@ export const Part1Learning: React.FC<Part1LearningProps> = ({
       <div className="mb-6 bg-gradient-to-r from-red-700 via-red-600 to-amber-600 rounded-2xl p-5 sm:p-7 text-white shadow-sm relative overflow-hidden">
         <div className="relative z-10 max-w-3xl">
           <div className="text-xs uppercase tracking-wider text-red-100 font-semibold mb-1.5">
-            한림대학교 스페인어 (002890-01) 2026-2학기 강의 통합
+            2026-2학기 스페인어 강좌 (002890-01) 시험대비 마스터
           </div>
           <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white mb-2">
             Part 1. 시험 대비 챕터별 이론 & 문법 마스터

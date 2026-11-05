@@ -190,7 +190,7 @@ export default function App() {
       <footer className="border-t border-slate-200 bg-white py-6 mt-12 text-center text-xs text-slate-500">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div>
-            <span>한림대학교 2026-2학기 스페인어 (002890-01)</span>
+            <span>2026-2학기 스페인어 강좌 (002890-01)</span>
             <span className="mx-2">·</span>
             <span>담당교수: 김태영 (florebonita@naver.com)</span>
           </div>

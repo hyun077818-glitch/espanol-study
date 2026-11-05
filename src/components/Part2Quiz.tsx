@@ -37,23 +37,27 @@ export const Part2Quiz: React.FC<Part2QuizProps> = ({
   onGoToChapter,
 }) => {
   const [practiceMode, setPracticeMode] = useState<boolean>(true); // Immediate feedback vs Exam mode
-  const [showExplanation, setShowExplanation] = useState<boolean>(false);
   const [isPauseModalOpen, setIsPauseModalOpen] = useState<boolean>(false);
   const [isFinishConfirmOpen, setIsFinishConfirmOpen] = useState<boolean>(false);
+  const [typedInput, setTypedInput] = useState<string>('');
+  const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
 
   const currentIndex = session.currentIndex;
   const currentQuestion: QuizQuestion | undefined = session.questions[currentIndex];
-  const currentAnswer = currentQuestion ? session.answers[currentQuestion.id] || '' : '';
   const isFlagged = currentQuestion ? session.flaggedQuestionIds.includes(currentQuestion.id) : false;
 
-  // Auto show explanation in practice mode if question was already answered
+  // Sync typedInput and isConfirmed when navigating questions
   useEffect(() => {
-    if (practiceMode && currentAnswer) {
-      setShowExplanation(true);
+    if (!currentQuestion) return;
+    const existing = session.answers[currentQuestion.id];
+    if (existing !== undefined && existing.trim().length > 0) {
+      setTypedInput(existing);
+      setIsConfirmed(true);
     } else {
-      setShowExplanation(false);
+      setTypedInput('');
+      setIsConfirmed(false);
     }
-  }, [currentIndex, practiceMode, currentAnswer]);
+  }, [currentIndex, currentQuestion?.id]);
 
   if (!currentQuestion) {
     return (
@@ -72,14 +76,17 @@ export const Part2Quiz: React.FC<Part2QuizProps> = ({
   }
 
   const answeredCount = Object.keys(session.answers).length;
-  const isAnswered = currentAnswer.trim().length > 0;
-  const isCorrect = isAnswered ? checkAnswer(currentAnswer, currentQuestion) : false;
+  const currentAnswer = isConfirmed ? session.answers[currentQuestion.id] || '' : '';
+  const isCorrect = isConfirmed ? checkAnswer(currentAnswer, currentQuestion) : false;
 
-  // Record an answer
-  const handleSelectAnswer = (ans: string) => {
+  // Confirm and submit the answer
+  const handleConfirmAnswer = () => {
+    if (!typedInput.trim()) return;
+
+    const trimmed = typedInput.trim();
     const updatedAnswers = {
       ...session.answers,
-      [currentQuestion.id]: ans,
+      [currentQuestion.id]: trimmed,
     };
     const updatedSession: QuizSession = {
       ...session,
@@ -87,16 +94,27 @@ export const Part2Quiz: React.FC<Part2QuizProps> = ({
     };
     onUpdateSession(updatedSession);
     saveActiveSession(updatedSession);
-
-    if (practiceMode) {
-      setShowExplanation(true);
-    }
+    setIsConfirmed(true);
   };
 
-  // Spanish special character inserter for text answers
+  // Re-edit answer
+  const handleReEdit = () => {
+    setIsConfirmed(false);
+  };
+
+  // Spanish special character inserter
   const handleInsertChar = (char: string) => {
-    const newAnswer = currentAnswer + char;
-    handleSelectAnswer(newAnswer);
+    if (isConfirmed) return;
+    setTypedInput((prev) => prev + char);
+  };
+
+  // Move to next question or open result confirmation if last question
+  const handleNextQuestion = () => {
+    if (currentIndex < session.totalQuestions - 1) {
+      handleGoToQuestion(currentIndex + 1);
+    } else {
+      setIsFinishConfirmOpen(true);
+    }
   };
 
   // Toggle flag/bookmark
@@ -126,6 +144,29 @@ export const Part2Quiz: React.FC<Part2QuizProps> = ({
       saveActiveSession(updated);
     }
   };
+
+  // Global Enter shortcut
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isPauseModalOpen || isFinishConfirmOpen) return;
+
+      if (e.key === 'Enter') {
+        const activeTag = document.activeElement?.tagName;
+        if (activeTag === 'INPUT' || activeTag === 'TEXTAREA') return;
+
+        if (isConfirmed) {
+          e.preventDefault();
+          handleNextQuestion();
+        } else if (typedInput.trim()) {
+          e.preventDefault();
+          handleConfirmAnswer();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isConfirmed, typedInput, currentIndex, session.totalQuestions, isPauseModalOpen, isFinishConfirmOpen]);
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
@@ -286,98 +327,166 @@ export const Part2Quiz: React.FC<Part2QuizProps> = ({
         {/* Answer Input Area: Multiple Choice or Fill Blank */}
         <div className="pt-2">
           {currentQuestion.type === 'multiple-choice' && currentQuestion.options ? (
-            <div className="grid grid-cols-1 gap-2.5">
-              {currentQuestion.options.map((opt, oIdx) => {
-                const isSelected = currentAnswer === opt;
-                let optionStyle =
-                  'bg-white border-slate-200 text-slate-800 hover:border-slate-300 hover:bg-slate-50/70';
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 gap-2.5">
+                {currentQuestion.options.map((opt, oIdx) => {
+                  const isSelected = typedInput === opt;
+                  let optionStyle =
+                    'bg-white border-slate-200 text-slate-800 hover:border-slate-300 hover:bg-slate-50/70';
 
-                if (practiceMode && showExplanation) {
-                  if (opt === currentQuestion.correctAnswer) {
-                    optionStyle =
-                      'bg-emerald-50 border-emerald-500 text-emerald-950 font-semibold ring-1 ring-emerald-400';
+                  if (isConfirmed && practiceMode) {
+                    if (opt === currentQuestion.correctAnswer) {
+                      optionStyle =
+                        'bg-emerald-50 border-emerald-500 text-emerald-950 font-semibold ring-1 ring-emerald-400';
+                    } else if (isSelected) {
+                      optionStyle =
+                        'bg-red-50 border-red-500 text-red-950 line-through';
+                    } else {
+                      optionStyle = 'bg-slate-50 border-slate-200 text-slate-400 opacity-60';
+                    }
                   } else if (isSelected) {
                     optionStyle =
-                      'bg-red-50 border-red-500 text-red-950 line-through';
+                      'bg-red-50 border-red-600 text-red-950 font-semibold ring-2 ring-red-400/50 shadow-xs';
                   }
-                } else if (isSelected) {
-                  optionStyle =
-                    'bg-slate-900 border-slate-900 text-white font-semibold shadow-xs';
-                }
 
-                return (
-                  <button
-                    key={oIdx}
-                    onClick={() => handleSelectAnswer(opt)}
-                    className={`w-full text-left p-4 rounded-xl border text-sm sm:text-base transition-all flex items-center justify-between gap-3 ${optionStyle}`}
-                  >
-                    <span>{opt}</span>
-                    <span
-                      className={`w-6 h-6 rounded-full border text-xs flex items-center justify-center font-bold shrink-0 ${
-                        isSelected
-                          ? practiceMode && showExplanation
-                            ? isCorrect
-                              ? 'bg-emerald-600 text-white border-emerald-600'
-                              : 'bg-red-600 text-white border-red-600'
-                            : 'bg-white text-slate-900 border-white'
-                          : 'border-slate-300 text-slate-500'
-                      }`}
+                  return (
+                    <button
+                      key={oIdx}
+                      type="button"
+                      disabled={isConfirmed}
+                      onClick={() => setTypedInput(opt)}
+                      className={`w-full text-left p-4 rounded-xl border text-sm sm:text-base transition-all flex items-center justify-between gap-3 ${optionStyle} ${isConfirmed ? 'cursor-default' : 'cursor-pointer'}`}
                     >
-                      {String.fromCharCode(65 + oIdx)}
-                    </span>
+                      <span className="font-medium">{opt}</span>
+                      <span
+                        className={`w-6 h-6 rounded-full border text-xs flex items-center justify-center font-bold shrink-0 ${
+                          isSelected
+                            ? isConfirmed && practiceMode
+                              ? isCorrect
+                                ? 'bg-emerald-600 text-white border-emerald-600'
+                                : 'bg-red-600 text-white border-red-600'
+                              : 'bg-red-600 text-white border-red-600'
+                            : 'border-slate-300 text-slate-500'
+                        }`}
+                      >
+                        {String.fromCharCode(65 + oIdx)}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Action Controls for Multiple Choice */}
+              {!isConfirmed ? (
+                <div className="flex items-center justify-between gap-3 pt-1">
+                  <span className="text-xs text-slate-500 font-medium">
+                    {typedInput ? '보기를 선택했습니다. [정답 확인] 버튼이나 Enter 키를 누르세요.' : '정답 보기를 클릭해 선택하세요.'}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleConfirmAnswer}
+                    disabled={!typedInput.trim()}
+                    className="px-6 py-2.5 bg-red-600 hover:bg-red-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl text-sm transition-colors shadow-xs flex items-center gap-1.5 shrink-0"
+                  >
+                    <CheckCircle className="w-4 h-4" />
+                    <span>정답 확인 (확인)</span>
                   </button>
-                );
-              })}
+                </div>
+              ) : (
+                <div className="flex items-center justify-end pt-1">
+                  <button
+                    type="button"
+                    onClick={handleReEdit}
+                    className="text-xs font-semibold text-slate-500 hover:text-slate-800 underline transition-colors"
+                  >
+                    보기를 다시 선택하기
+                  </button>
+                </div>
+              )}
             </div>
           ) : (
             /* Fill in the blank (주관식/단답형) */
             <div className="space-y-3">
-              <div className="relative">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <input
                   type="text"
-                  placeholder="정답 철자(단어/문장)를 입력하세요..."
-                  value={currentAnswer}
-                  onChange={(e) => handleSelectAnswer(e.target.value)}
-                  className={`w-full p-4 text-base font-semibold border rounded-xl focus:outline-none focus:ring-2 ${
-                    practiceMode && showExplanation
+                  placeholder="정답 철자(단어/문장)를 끝까지 입력하세요..."
+                  value={typedInput}
+                  onChange={(e) => setTypedInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      if (!isConfirmed) {
+                        handleConfirmAnswer();
+                      } else {
+                        handleNextQuestion();
+                      }
+                    }
+                  }}
+                  disabled={isConfirmed}
+                  className={`flex-1 p-4 text-base font-semibold border rounded-xl focus:outline-none focus:ring-2 ${
+                    isConfirmed && practiceMode
                       ? isCorrect
                         ? 'border-emerald-500 bg-emerald-50/50 text-emerald-950 focus:ring-emerald-400'
                         : 'border-red-500 bg-red-50/50 text-red-950 focus:ring-red-400'
-                      : 'border-slate-300 focus:border-slate-900 focus:ring-slate-400'
+                      : 'border-slate-300 focus:border-red-600 focus:ring-red-200'
                   }`}
+                  autoFocus
                 />
+
+                {!isConfirmed ? (
+                  <button
+                    type="button"
+                    onClick={handleConfirmAnswer}
+                    disabled={!typedInput.trim()}
+                    className="px-6 py-3.5 bg-red-600 hover:bg-red-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold rounded-xl text-sm sm:text-base transition-colors shrink-0 shadow-xs flex items-center justify-center gap-2"
+                  >
+                    <CheckCircle className="w-5 h-5" />
+                    <span>정답 확인</span>
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={handleReEdit}
+                    className="px-4 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-sm transition-colors shrink-0 flex items-center justify-center gap-1.5 border border-slate-300"
+                  >
+                    <span>다시 입력</span>
+                  </button>
+                )}
               </div>
 
               {/* Spanish Special Characters Keyboard Toolbar */}
-              <div className="flex flex-wrap items-center gap-1.5 p-2 bg-slate-100 rounded-lg">
-                <span className="text-xs text-slate-500 font-semibold px-2">
-                  스페인어 특수문자 입력:
-                </span>
-                {['á', 'é', 'í', 'ó', 'ú', 'ñ', '¿', '¡', 'ü'].map((char) => (
-                  <button
-                    key={char}
-                    type="button"
-                    onClick={() => handleInsertChar(char)}
-                    className="w-8 h-8 rounded bg-white hover:bg-slate-200 text-slate-900 font-mono font-bold text-sm shadow-xs transition-colors flex items-center justify-center"
-                  >
-                    {char}
-                  </button>
-                ))}
-              </div>
+              {!isConfirmed && (
+                <div className="flex flex-wrap items-center gap-1.5 p-2 bg-slate-100 rounded-lg">
+                  <span className="text-xs text-slate-500 font-semibold px-2">
+                    스페인어 특수문자 입력:
+                  </span>
+                  {['á', 'é', 'í', 'ó', 'ú', 'ñ', '¿', '¡', 'ü'].map((char) => (
+                    <button
+                      key={char}
+                      type="button"
+                      onClick={() => handleInsertChar(char)}
+                      className="w-8 h-8 rounded bg-white hover:bg-slate-200 text-slate-900 font-mono font-bold text-sm shadow-xs transition-colors flex items-center justify-center"
+                    >
+                      {char}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </div>
 
         {/* Immediate Explanation Card in Practice Mode */}
-        {practiceMode && showExplanation && isAnswered && (
+        {practiceMode && isConfirmed && (
           <div
-            className={`p-5 rounded-xl border space-y-3 animate-in fade-in-50 duration-200 ${
+            className={`p-5 rounded-xl border space-y-3.5 animate-in fade-in-50 duration-200 ${
               isCorrect
                 ? 'bg-emerald-50/80 border-emerald-200 text-emerald-950'
                 : 'bg-red-50/80 border-red-200 text-red-950'
             }`}
           >
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between flex-wrap gap-2">
               <div className="flex items-center gap-2 font-bold text-sm sm:text-base">
                 {isCorrect ? (
                   <>
@@ -388,13 +497,14 @@ export const Part2Quiz: React.FC<Part2QuizProps> = ({
                   <>
                     <HelpCircle className="w-5 h-5 text-red-600" />
                     <span>
-                      아쉽게 틀렸습니다. 정답: {currentQuestion.correctAnswer}
+                      아쉽게 틀렸습니다. 정답: <span className="font-mono underline font-extrabold">{currentQuestion.correctAnswer}</span>
                     </span>
                   </>
                 )}
               </div>
 
               <button
+                type="button"
                 onClick={() =>
                   onGoToChapter(
                     currentQuestion.chapterId,
@@ -417,6 +527,24 @@ export const Part2Quiz: React.FC<Part2QuizProps> = ({
                 <span>시험 팁: {currentQuestion.examTip}</span>
               </div>
             )}
+
+            {/* Next Question CTA directly inside feedback card */}
+            <div className="pt-3 border-t border-slate-200/60 flex flex-wrap items-center justify-between gap-3">
+              <span className="text-xs text-slate-500 font-medium">
+                💡 <kbd className="px-1.5 py-0.5 text-[11px] font-mono bg-white border border-slate-300 rounded shadow-2xs">Enter</kbd> 키를 누르면 다음 문제로 바로 넘어갑니다.
+              </span>
+              <button
+                type="button"
+                onClick={handleNextQuestion}
+                className="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg text-sm transition-all shadow-xs flex items-center gap-2"
+              >
+                <span>
+                  {currentIndex < session.totalQuestions - 1
+                    ? '다음 문제로 넘어가기 ▶'
+                    : '전체 채점 및 결과보기 🎉'}
+                </span>
+              </button>
+            </div>
           </div>
         )}
 
