@@ -9,6 +9,8 @@ import {
   HelpCircle,
   AlertCircle,
   Lightbulb,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 import { CHAPTERS_DATA } from '../data/chapters';
 import { playSpanishTTS } from '../utils/speech';
@@ -32,6 +34,8 @@ export const Part1Learning: React.FC<Part1LearningProps> = ({
   const [highlightedSectionId, setHighlightedSectionId] = useState<string | null>(
     targetSectionId || null
   );
+  const [maskMode, setMaskMode] = useState<'none' | 'ko' | 'es'>('none');
+  const [revealedEx, setRevealedEx] = useState<Record<string, boolean>>({});
 
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
@@ -74,7 +78,7 @@ export const Part1Learning: React.FC<Part1LearningProps> = ({
             김태영 교수님 강의 계획서, 슬라이드 및 과제물 연습문제의 모든 범위(발음, 강세, 인칭, 명사의 성수, 관사, SER vs ESTAR, 어미탈락, 국적형용사, 지시사, 무인칭 Hay, 숫자)를 체계적으로 학습합니다.
           </p>
           <div className="flex flex-wrap items-center gap-3 text-xs text-red-100">
-            <span>총 8개 집중 챕터</span>
+            <span>총 9개 집중 챕터 (알파벳 입문 ~ 핵심 어휘집)</span>
             <span>·</span>
             <span>원어민 스페인어 발음 듣기 지원</span>
             <span>·</span>
@@ -88,7 +92,7 @@ export const Part1Learning: React.FC<Part1LearningProps> = ({
         <div className="flex items-center justify-between mb-2 px-1">
           <span className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
             <BookOpen className="w-3.5 h-3.5 text-red-600" />
-            <span>챕터 바로 선택 (1~8장)</span>
+            <span>챕터 바로 선택 (1~9장)</span>
           </span>
           <span className="text-xs text-slate-500 font-medium">
             현재: Ch {currentChapter.id}
@@ -291,6 +295,62 @@ export const Part1Learning: React.FC<Part1LearningProps> = ({
                 ))}
               </ul>
             </div>
+
+            {/* Self-Study Mask Mode Toolbar */}
+            <div className="mt-4 pt-3 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs">
+              <span className="font-semibold text-slate-700 flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-red-600" />
+                <span>단어·문장 셀프 암기 테스트:</span>
+              </span>
+              <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-lg border border-slate-200">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMaskMode('none');
+                    setRevealedEx({});
+                  }}
+                  className={`px-2.5 py-1 rounded-md font-medium transition-colors ${
+                    maskMode === 'none'
+                      ? 'bg-white text-slate-900 font-semibold shadow-2xs'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  기본 (전체 표시)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMaskMode('ko');
+                    setRevealedEx({});
+                  }}
+                  className={`px-2.5 py-1 rounded-md font-medium transition-colors flex items-center gap-1 ${
+                    maskMode === 'ko'
+                      ? 'bg-red-600 text-white font-semibold shadow-2xs'
+                      : 'text-slate-600 hover:text-red-700'
+                  }`}
+                  title="한국어 뜻을 가리고 스스로 맞춰봅니다 (클릭 시 확인)"
+                >
+                  <EyeOff className="w-3 h-3" />
+                  <span>뜻 가리기</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMaskMode('es');
+                    setRevealedEx({});
+                  }}
+                  className={`px-2.5 py-1 rounded-md font-medium transition-colors flex items-center gap-1 ${
+                    maskMode === 'es'
+                      ? 'bg-red-600 text-white font-semibold shadow-2xs'
+                      : 'text-slate-600 hover:text-red-700'
+                  }`}
+                  title="스페인어 단어를 가리고 뜻을 보며 스펠링을 연상합니다 (클릭 시 확인)"
+                >
+                  <EyeOff className="w-3 h-3" />
+                  <span>스페인어 가리기</span>
+                </button>
+              </div>
+            </div>
           </div>
 
           {/* Chapter Detailed Sections */}
@@ -346,34 +406,70 @@ export const Part1Learning: React.FC<Part1LearningProps> = ({
                         {/* Interactive Spanish Examples with Audio */}
                         {rule.examples && rule.examples.length > 0 && (
                           <div className="grid grid-cols-1 gap-2 pt-1">
-                            {rule.examples.map((ex, eIdx) => (
-                              <div
-                                key={eIdx}
-                                className="flex items-center justify-between p-3.5 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100/70 transition-colors"
-                              >
-                                <div className="min-w-0 pr-3">
-                                  <div className="font-semibold text-sm text-slate-900 flex flex-wrap items-center gap-2">
-                                    <span className="tracking-wide">{ex.es}</span>
-                                    {ex.pronunciation && (
-                                      <span className="font-medium text-xs text-amber-800 bg-amber-100/70 border border-amber-200 px-2 py-0.5 rounded-md font-sans">
-                                        [{ex.pronunciation}]
-                                      </span>
-                                    )}
-                                  </div>
-                                  <div className="text-xs text-slate-600 mt-1 leading-relaxed">
-                                    {ex.ko}
-                                  </div>
-                                </div>
-                                <button
-                                  type="button"
-                                  onClick={() => playSpanishTTS(ex.es)}
-                                  title="스페인어 원어민 발음 듣기"
-                                  className="p-2 text-slate-500 hover:text-red-600 hover:bg-white rounded-lg transition-colors border border-transparent hover:border-slate-200 shrink-0"
+                            {rule.examples.map((ex, eIdx) => {
+                              const itemKey = `${sec.id}-${rIdx}-${eIdx}`;
+                              const isRevealed = !!revealedEx[itemKey];
+                              const isKoMasked = maskMode === 'ko' && !isRevealed;
+                              const isEsMasked = maskMode === 'es' && !isRevealed;
+
+                              return (
+                                <div
+                                  key={eIdx}
+                                  onClick={() => {
+                                    if (maskMode !== 'none') {
+                                      setRevealedEx((prev) => ({
+                                        ...prev,
+                                        [itemKey]: !prev[itemKey],
+                                      }));
+                                    }
+                                  }}
+                                  className={`flex items-center justify-between p-3.5 rounded-lg border transition-all ${
+                                    maskMode !== 'none' ? 'cursor-pointer hover:border-red-300' : ''
+                                  } bg-slate-50 border-slate-200 hover:bg-slate-100/70`}
                                 >
-                                  <Volume2 className="w-4 h-4" />
-                                </button>
-                              </div>
-                            ))}
+                                  <div className="min-w-0 pr-3">
+                                    <div className="font-semibold text-sm text-slate-900 flex flex-wrap items-center gap-2">
+                                      {isEsMasked ? (
+                                        <span className="text-xs font-semibold px-2.5 py-1 bg-red-50 text-red-700 border border-red-200 rounded-md flex items-center gap-1.5 shadow-2xs">
+                                          <Eye className="w-3.5 h-3.5 text-red-500" />
+                                          <span>스페인어 단어 확인 (클릭)</span>
+                                        </span>
+                                      ) : (
+                                        <>
+                                          <span className="tracking-wide">{ex.es}</span>
+                                          {ex.pronunciation && (
+                                            <span className="font-medium text-xs text-amber-800 bg-amber-100/70 border border-amber-200 px-2 py-0.5 rounded-md font-sans">
+                                              [{ex.pronunciation}]
+                                            </span>
+                                          )}
+                                        </>
+                                      )}
+                                    </div>
+                                    <div className="text-xs text-slate-600 mt-1 leading-relaxed">
+                                      {isKoMasked ? (
+                                        <span className="inline-flex items-center gap-1.5 text-xs font-medium text-amber-800 bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-md shadow-2xs">
+                                          <Eye className="w-3.5 h-3.5 text-amber-600" />
+                                          <span>한국어 뜻 확인 (클릭)</span>
+                                        </span>
+                                      ) : (
+                                        ex.ko
+                                      )}
+                                    </div>
+                                  </div>
+                                  <button
+                                    type="button"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      playSpanishTTS(ex.es);
+                                    }}
+                                    title="스페인어 원어민 발음 듣기"
+                                    className="p-2 text-slate-500 hover:text-red-600 hover:bg-white rounded-lg transition-colors border border-transparent hover:border-slate-200 shrink-0"
+                                  >
+                                    <Volume2 className="w-4 h-4" />
+                                  </button>
+                                </div>
+                              );
+                            })}
                           </div>
                         )}
 

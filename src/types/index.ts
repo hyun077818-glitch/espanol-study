@@ -10,7 +10,8 @@ export type GrammarTopic =
   | 'nationality-origin-titles'
   | 'demonstratives-possessives'
   | 'hay-vs-estar'
-  | 'numbers-positions';
+  | 'numbers-positions'
+  | 'essential-vocab';
 
 export interface QuizQuestion {
   id: string;

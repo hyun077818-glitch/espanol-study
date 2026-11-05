@@ -12,13 +12,13 @@ const TOPIC_METADATA: Record<
   GrammarTopic,
   { label: string; chapterId: number; targetSectionId: string }
 > = {
-  'cultural-basics': {
-    label: '스페인어권 문화 & 식문화 (Dos besos, 식사 5단계)',
+  'phonetics-accent': {
+    label: '알파벳 A~Z, 자음 발음, 음절 분해 & 강세 4대 법칙',
     chapterId: 1,
     targetSectionId: 'sec-1-3',
   },
-  'phonetics-accent': {
-    label: '발음, 음절 분해 & 강세 위치 규칙',
+  'cultural-basics': {
+    label: '스페인어권 문화 & 식문화 (Dos besos, 식사 5단계)',
     chapterId: 2,
     targetSectionId: 'sec-2-3',
   },
@@ -62,6 +62,11 @@ const TOPIC_METADATA: Record<
     chapterId: 8,
     targetSectionId: 'sec-8-3',
   },
+  'essential-vocab': {
+    label: '기초 필수 어휘 & 인사말, 바르(Bar) 및 음식 단어',
+    chapterId: 9,
+    targetSectionId: 'sec-9-1',
+  },
 };
 
 const PRESCRIPTIONS: Record<GrammarTopic, string> = {
@@ -74,7 +79,7 @@ const PRESCRIPTIONS: Record<GrammarTopic, string> = {
   'adjectives-apocope':
     '남성단수명사 앞 어미탈락(primer día, buen amigo)과 Santo vs San의 Do-/To- 예외(Santo Domingo vs San Diego), 그리고 grande가 여성단수 앞에서도 gran이 되는 규칙(una gran mujer)을 꼭 복습하세요.',
   'phonetics-accent':
-    '음절분해 4대 규칙(연속 강모음 분리: i-de-a, 약모음 띨데: rí-o, pa-ís)과 모음/n/s 끝 2번째 음절 강세 규칙(ca-ma, Car-men), 자음 끝 마지막 음절 강세(hos-pi-tal)를 복습하세요.',
+    '알파벳 철자 이름(A~Z), 자음 발음 공식(H 묵음, B/V 동음, C/Z, G/J)과 음절분해 4대 규칙(연속 강모음 분리: i-de-a, 약모음 띨데: rí-o), 강세 4대 법칙을 복습하세요.',
   'nationality-origin-titles':
     '국적형용사의 남녀형(francés/francesa, español/española, coreano/coreana)과 성 앞 호칭(el señor Gonzáles) vs 이름 앞 호칭(Don Quijote)을 정확히 구분해야 합니다.',
   'demonstratives-possessives':
@@ -85,6 +90,8 @@ const PRESCRIPTIONS: Record<GrammarTopic, string> = {
     '스페인의 5단계 식사 주기(Desayuno, Almuerzo, Comida/메뉴 델 디아, Merienda, Cena), Dos besos(스페인 2회 vs 중남미 1회), 주요 5개국의 문화적 특징을 확인하세요.',
   'pronouns-ser-llamarse':
     '인칭대명사와 SER 동사 현재형(soy, eres, es, somos, sois, son) 및 Llamarse 재귀동사(me llamo, te llamas...) 변형을 복습하세요.',
+  'essential-vocab':
+    '인사말(Buenos días, Buenas tardes), 기본 사물 명사(성별 구분 포함), 바르(bar) 음식 및 음료(caña, paella, jamón, tortilla) 단어를 Chapter 9에서 다시 소리와 함께 복습하세요.',
 };
 
 export function analyzePerformance(): OverallAnalysis {

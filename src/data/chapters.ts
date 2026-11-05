@@ -1,12 +1,155 @@
 import { Chapter } from '../types';
 
 export const CHAPTERS_DATA: Chapter[] = [
+  // ================= CHAPTER 1: 알파벳 & 발음 파닉스 (초급 입문) =================
   {
     id: 1,
-    title: '제1장: 스페인어 개요 & 스페인어권 문화',
+    title: '제1장: 스페인어 알파벳(A~Z) & 발음 파닉스',
+    subtitle: '스페인어 27자 알파벳 철자 이름, 자음·모음 발음 원리, 음절 분해 & 강세 4대 법칙',
+    lectureWeek: '2주차 (기초 입문)',
+    badge: '알파벳 & 발음',
+    summary:
+      '스페인어를 처음 배우는 학습자를 위한 완벽 입문 단원입니다. A부터 Z까지 27자 알파벳의 정식 명칭과 소리, 주의해야 할 자음 규칙(C/Z, G/J, H 묵음, B/V 동음, R/RR 굴림), 강모음과 약모음, 음절 분해 및 강세의 4대 법칙을 마스터합니다.',
+    keyTakeaways: [
+      '스페인어 알파벳은 총 27글자이며, 영어에 없는 고유 문자 Ñ(eñe [에녜])가 포함됩니다.',
+      'H(hache [아체])는 스페인어에서 100% 항상 묵음입니다 (hotel [오뗄], hospital [오스피딸]).',
+      'B와 V는 스페인어에서 발음 구분이 없으며 둘 다 [ㅂ] 소리로 발음합니다 (vino [비노], bueno [부에노]).',
+      'P와 T는 한국어의 된소리 [ㅃ, ㄸ]에 가깝게 발음합니다 (padre [빠드레], taza [따사]).',
+      '강모음: a, e, o / 약모음: i, u (약모음에 띨데가 붙으면 강모음으로 승격: río, país).',
+      '음절분해 4대 원칙과 강세 위치 4대 법칙(모음/n/s 끝 2번째 음절, 자음 끝 마지막 음절, 띨데 우선).',
+    ],
+    sections: [
+      {
+        id: 'sec-1-1',
+        title: '1.1 스페인어 27자 알파벳 철자 이름과 대표 발음',
+        subtitle: 'A부터 Z까지의 정식 알파벳 이름(Nombre)과 대표 단어 오디오',
+        rules: [
+          {
+            title: '스페인어 공식 27자 알파벳 (Alfabeto Oficial)',
+            description: '스페인어 공식 알파벳은 총 27글자입니다 (영어 26자 + 스페인어 고유 문자 Ñ). 각 글자의 스피커(🔊)를 누르면 원어민의 정확한 발음을 들을 수 있습니다.',
+            examples: [
+              { es: 'A a (a)', pronunciation: '아', ko: '대표 단어: agua [아구아] 물 / amarillo [아마리요] 노란색' },
+              { es: 'B b (be)', pronunciation: '베', ko: '대표 단어: bueno [부에노] 좋은 / barco [바르꼬] 배' },
+              { es: 'C c (ce)', pronunciation: '세', ko: 'ca, co, cu는 [까, 꼬, 꾸] / ce, ci는 [세, 시]: cama [까마] 침대, cine [시네] 영화' },
+              { es: 'D d (de)', pronunciation: '데', ko: '대표 단어: día [디아] 날, 하루 / dedo [데도] 손가락' },
+              { es: 'E e (e)', pronunciation: '에', ko: '대표 단어: España [에스빠냐] 스페인 / entrada [엔뜨라다] 입구' },
+              { es: 'F f (efe)', pronunciation: '에페', ko: '대표 단어: foto [포또] 사진 / familia [파밀리아] 가족' },
+              { es: 'G g (ge)', pronunciation: '헤', ko: 'ga, go, gu는 [가, 고, 구] / ge, gi는 목구멍 [헤, 히] / gue, gui는 [게, 기]' },
+              { es: 'H h (hache)', pronunciation: '아체', ko: '★ 항상 묵음! 소리 안 남: hotel [오뗄] 호텔, hospital [오스피딸] 병원' },
+              { es: 'I i (i)', pronunciation: '이', ko: '대표 단어: isla [이슬라] 섬 / información [인포르마시온] 정보' },
+              { es: 'J j (jota)', pronunciation: '호따', ko: '강한 목구멍 [ㅎ] 마찰음: jamón [하몬] 하몽, jueves [후에베스] 목요일' },
+              { es: 'K k (ka)', pronunciation: '까', ko: 'kilo [낄로] 킬로그램, kimono [끼모노] (주로 외래어에 사용)' },
+              { es: 'L l (ele)', pronunciation: '엘레', ko: '대표 단어: libro [리브로] 책 / luna [루나] 달' },
+              { es: 'M m (eme)', pronunciation: '에메', ko: '대표 단어: mesa [메사] 탁자 / madre [마드레] 어머니' },
+              { es: 'N n (ene)', pronunciation: '에네', ko: '대표 단어: noche [노체] 밤 / nuevo [누에보] 새로운' },
+              { es: 'Ñ ñ (eñe)', pronunciation: '에녜', ko: '스페인어 고유 문자 [ny]: España [에스빠냐] 스페인, niño [니뇨] 어린이' },
+              { es: 'O o (o)', pronunciation: '오', ko: '대표 단어: oso [오소] 곰 / orden [오르덴] 순서' },
+              { es: 'P p (pe)', pronunciation: '뻬', ko: '한국어 [ㅃ] 된소리: padre [빠드레] 아버지, paella [빠에야] 빠에야' },
+              { es: 'Q q (cu)', pronunciation: '꾸', ko: '항상 u와 결합하여 que [께], qui [끼]로만 소리남: queso [께소] 치즈, quince [낀세] 15' },
+              { es: 'R r (ere)', pronunciation: '에레', ko: '단어 첫머리는 혀 굴림, 중간 모음 사이는 가벼운 [ㄹ]: rosa [ㄹ로사] 장미, pero [뻬로] 그러나' },
+              { es: 'S s (ese)', pronunciation: '에세', ko: '대표 단어: sol [솔] 태양 / silla [시야] 의자' },
+              { es: 'T t (te)', pronunciation: '떼', ko: '한국어 [ㄸ] 된소리: taza [따사] 컵 / teléfono [뗄레포노] 전화' },
+              { es: 'U u (u)', pronunciation: '우', ko: '대표 단어: uno [우노] 숫자 1 / universidad [우니베르시다드] 대학교' },
+              { es: 'V v (uve)', pronunciation: '우베', ko: '★ b와 완전히 동일한 [ㅂ] 발음: vino [비노] 와인, vaso [바소] 컵' },
+              { es: 'W w (uve doble)', pronunciation: '우베 도블레', ko: 'web [웹], Washington [워싱턴] (외래어 전용)' },
+              { es: 'X x (equis)', pronunciation: '에끼스', ko: 'examen [엑사멘] 시험, taxi [띡시] 택시, México [메히꼬] 멕시코' },
+              { es: 'Y y (i griega / ye)', pronunciation: '이 그리에가', ko: '모음 단독 y는 [이] / 자음 위치는 [y/j]: yo [요] 나, ya [야] 이미' },
+              { es: 'Z z (zeta)', pronunciation: '세따', ko: '스페인은 번데기 [θ/th], 중남미는 [ㅅ]: zapatos [사빠또스] 신발, zumo [수모] 주스' },
+            ],
+          },
+          {
+            title: '참고: 스페인어의 3대 복합자음 (Dígrafos: ch, ll, rr)',
+            description: '두 개의 철자가 합쳐져 하나의 독특한 소리를 내는 복합자음입니다. (과거에는 독립 알파벳으로 분류되었으나, 현재는 공식 27자 목록에서 빠지고 복합자음으로 다룹니다)',
+            examples: [
+              { es: 'CH ch (che)', pronunciation: '체', ko: '한국어 [ㅊ] 소리: chico [치꼬] 소년, coche [꼬체] 자동차, leche [레체] 우유' },
+              { es: 'LL ll (elle)', pronunciation: '에예', ko: '부드러운 [y/j] 소리: llave [야베] 열쇠, calle [까예] 거리, paella [빠에야] 빠에야' },
+              { es: 'RR rr (erre)', pronunciation: '에르레', ko: '강한 혀 떨림 굴림 소리 [ㄹㄹㄹ]: perro [뻬르로] 개, carro [까르로] 차' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'sec-1-2',
+        title: '1.2 초보자가 반드시 알아야 할 5대 자음 발음 공식',
+        subtitle: 'C/Z, G/J, H 묵음, B/V 동음, R/RR 굴림 소리의 규칙',
+        rules: [
+          {
+            title: '헷갈리는 자음 소리 판별표',
+            description: '모음과 결합할 때 소리가 바뀌는 규칙입니다.',
+            table: {
+              headers: ['자음', '뒤에 모음 a, o, u가 올 때', '뒤에 모음 e, i가 올 때', '특수 결합 규칙 및 예문'],
+              rows: [
+                ['C c', 'ca, co, cu [까, 꼬, 꾸]\nej) cama [까마], coche [꼬체]', 'ce, ci [세, 시]\nej) cine [시네], cena [세나]', 'que, qui [께, 끼]로 표기\nej) queso [께소], quince [낀세]'],
+                ['G g', 'ga, go, gu [가, 고, 구]\nej) gato [가또], amigo [아미고]', 'ge, gi [목구멍 헤, 히]\nej) gente [헨떼] 사람들', 'gue, gui [게, 기] (u 묵음!)\nej) guerra [게르라] 전쟁'],
+                ['H h', '항상 묵음 (소리 안 남)', '항상 묵음 (소리 안 남)', 'hotel [오뗄], hospital [오스피딸], hijo [이호] 아들'],
+                ['B / V', '[ㅂ] 입술소리', '[ㅂ] 입술소리', '스페인어는 b와 v의 발음 차이가 전혀 없음: bueno [부에노] = vino [비노]'],
+                ['R / RR', '단어 첫머리 R과 RR은 강한 혀 떨림 굴림', '모음 사이 R은 가벼운 [ㄹ]', 'pero [뻬로] 그러나 vs perro [뻬르로] 개 (의미가 달라짐!)'],
+              ],
+            },
+          },
+        ],
+      },
+      {
+        id: 'sec-1-3',
+        title: '1.3 모음 결합, 음절 분해 & 강세 위치 4대 법칙',
+        subtitle: '이중·삼중모음, 하이픈(-) 음절 나누기, 강세 위치 판별 공식',
+        rules: [
+          {
+            title: '이중모음과 삼중모음 핵심 단어 듣기',
+            description: '강모음(a, e, o)과 약모음(i, u)의 결합 원리입니다.',
+            examples: [
+              { es: 'aire', pronunciation: '아이레', ko: '공기 (강 a + 약 i 결합)' },
+              { es: 'Europa', pronunciation: '에우로빠', ko: '유럽 (강 e + 약 u 결합)' },
+              { es: 'piano', pronunciation: '삐아노', ko: '피아노 (약 i + 강 a 결합)' },
+              { es: 'bueno', pronunciation: '부에노', ko: '좋은 (약 u + 강 e 결합)' },
+              { es: 'viudo', pronunciation: '비우도', ko: '홀아비 (약 i + 약 u 결합)' },
+              { es: 'huida', pronunciation: '우이다', ko: '도망 (약 u + 약 i 결합 / h 묵음)' },
+              { es: 'Uruguay', pronunciation: '우루구아이', ko: '우루과이 (삼중모음: 약 u + 강 a + 약 y[i])' },
+              { es: 'buey', pronunciation: '부에이', ko: '소 (삼중모음: 약 u + 강 e + 약 y[i], 하나의 모음 간주)' },
+            ],
+          },
+          {
+            title: '음절 분해 4대 원칙 (기출 단어)',
+            description: '스페인어 단어를 하이픈(-)으로 나누는 규칙입니다.',
+            examples: [
+              { es: 'verano', pronunciation: '베라노', ko: '여름: ve-ra-no (규칙 1: 모음 사이 자음 1개는 뒷모음에 붙음)' },
+              { es: 'verde', pronunciation: '베르데', ko: '녹색: ver-de (규칙 2: 모음 사이 자음 2개는 앞뒤로 분리)' },
+              { es: 'puerto', pronunciation: '뿌에르또', ko: '항구: puer-to (r과 t 분리)' },
+              { es: 'crisis', pronunciation: '끄리시스', ko: '위기: cri-sis (cr 이중자음은 분리 불가)' },
+              { es: 'gloria', pronunciation: '글로리아', ko: '영광: glo-ria (gl 이중자음은 분리 불가)' },
+              { es: 'idea', pronunciation: '이데아', ko: '생각: i-de-a (규칙 3: 연속된 강모음 e-a는 무조건 분리!)' },
+              { es: 'poema', pronunciation: '뽀에마', ko: '시: po-e-ma (연속된 강모음 o-e는 무조건 분리!)' },
+              { es: 'río', pronunciation: 'ㄹ리오', ko: '강: rí-o (규칙 4: 약모음 i에 강세 띨데가 있어 강모음 승격 분리!)' },
+              { es: 'país', pronunciation: '빠이스', ko: '나라: pa-ís (약모음 i에 띨데가 있어 강모음 승격 분리!)' },
+            ],
+          },
+          {
+            title: '강세 판별 4법칙 (Acentuación)',
+            description: '단어 끝 철자에 따라 강세 위치가 정해집니다.',
+            examples: [
+              { es: 'cama', pronunciation: '까마', ko: '침대: ca-ma (법칙 1: 모음 끝 -> 끝에서 2번째 ca에 강세)' },
+              { es: 'Carmen', pronunciation: '까르멘', ko: '까르멘: Car-men (법칙 1: 자음 n 끝 -> 끝에서 2번째 Car에 강세)' },
+              { es: 'hospital', pronunciation: '오스피딸', ko: '병원: hos-pi-tal (법칙 2: 자음 l 끝 -> 마지막 음절 tal에 강세)' },
+              { es: 'comer', pronunciation: '꼬메르', ko: '먹다: co-mer (법칙 2: 자음 r 끝 -> 마지막 음절 mer에 강세)' },
+              { es: 'diario', pronunciation: '디아리오', ko: '일기: dia-rio (법칙 3: 이중모음 dia의 강모음 a에 강세)' },
+              { es: 'ruido', pronunciation: 'ㄹ루이도', ko: '소음: rui-do (약+약 이중모음은 뒤쪽 i에 강세)' },
+              { es: 'nación', pronunciation: '나씨온', ko: '국가: na-ción (법칙 4: 띨데가 있는 음절에 무조건 강세)' },
+              { es: 'café', pronunciation: '까페', ko: '커피: ca-fé (띨데가 있는 음절에 강세)' },
+              { es: 'adiós', pronunciation: '아디오스', ko: '안녕: a-diós (띨데가 있는 음절에 강세)' },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+
+  // ================= CHAPTER 2: 스페인어 개요 & 문화 =================
+  {
+    id: 2,
+    title: '제2장: 스페인어 개요 & 스페인어권 문화',
     subtitle: '스페인어의 세계적 위상, 22개국 문화, Dos besos 인사법 및 스페인의 5단계 식문화',
     lectureWeek: '1주차 & 3주차 & 5주차',
-    badge: '기초 & 문화',
+    badge: '개요 & 문화',
     summary:
       '세계 2위의 공용어인 스페인어의 기본 특성과 라틴아메리카 및 스페인의 역사·문화적 배경, 인사법(Dos besos), 식사 주기(Desayuno~Cena) 및 대표 음식을 학습합니다.',
     keyTakeaways: [
@@ -18,8 +161,8 @@ export const CHAPTERS_DATA: Chapter[] = [
     ],
     sections: [
       {
-        id: 'sec-1-1',
-        title: '1.1 강의 정보 & 시험 평가 기준',
+        id: 'sec-2-1',
+        title: '2.1 강의 정보 & 시험 평가 기준',
         subtitle: '2026-2학기 한림대학교 스페인어 강의계획서 핵심',
         rules: [
           {
@@ -40,13 +183,13 @@ export const CHAPTERS_DATA: Chapter[] = [
         ],
       },
       {
-        id: 'sec-1-2',
-        title: '1.2 스페인어의 특징 & 스페인어권 국가',
+        id: 'sec-2-2',
+        title: '2.2 스페인어의 특징 & 스페인어권 국가',
         subtitle: '스페인, 멕시코, 페루, 아르헨티나, 도미니카 공화국의 핵심 지식',
         rules: [
           {
-            title: '스페인어의 3대 문법적 특징',
-            description: '한국어/영어와 다른 스페인어 고유의 문법 규칙입니다. 스피커 버튼을 눌러 원어민 발음을 들을 수 있습니다.',
+            title: '스페인어의 3대 문법적 특징 예문',
+            description: '한국어/영어와 다른 스페인어 고유의 문법 규칙입니다.',
             examples: [
               {
                 es: 'el profesor / la periodista',
@@ -79,7 +222,7 @@ export const CHAPTERS_DATA: Chapter[] = [
                 ['스페인 (España)', '800년간 이슬람 지배(카톨릭+이슬람 문화 혼재), 1492년 콜럼버스 신대륙 발견, 1898년 식민지 완전 상실', '세비야/톨레도/부르고스 성당, 가우디 건축, 세르반테스(돈키호테), 플라멩코, 투우, 시에스타, 빠에야, 하몽'],
                 ['멕시코 (México [메히꼬])', '북아메리카 유일의 스페인어권 국가, 인구 최다, 메스티소(백인+인디오 혼혈)', '마야/아스테카 문명, 죽은 자들의 날 (Día de Muertos [디아 데 무에르또스])'],
                 ['페루 (Perú [뻬루])', '15세기 잉카제국 건설, 남아메리카 위치', '쿠스코(Cuzco), 마추픽추(Machu Picchu), 대표음식 세비체(Ceviche [세비체]), 꾸이(Cuy [꾸이]), 작가 마리오 바르가스 요사'],
-                ['아르헨티나 (Argentina [아르헨띠나])', '남미 대륙 최남단, "중남미 속의 유럽" (다수의 백인+메스티소)', '유목 목동 가우초(El Gaucho [엘 가우초]), 탱고(El Tango [엘  tango]), 아스토르 피아졸라, 체 게바라, 메시, 대표음식 아사도(Asado [아사도])'],
+                ['아르헨티나 (Argentina [아르헨띠나])', '남미 대륙 최남단, "중남미 속의 유럽" (다수의 백인+메스티소)', '유목 목동 가우초(El Gaucho [엘 가우초]), 탱고(El Tango), 아스토르 피아졸라, 체 게바라, 메시, 대표음식 아사도(Asado [아사도])'],
                 ['도미니카 공화국 (República Dominicana)', '이스빠뇰라 섬(Isla Hispañola) 위치, 물라토(mulato: 백인+흑인 혼혈) 인구 50% 이상', '라틴댄스 메렝게(Merengue [메렝게]), 바차타(Bachata [바차타]), 콜마도(colmado), 데레초(derecho: 직진택시), 반데라(La bandera)'],
               ],
             },
@@ -87,8 +230,8 @@ export const CHAPTERS_DATA: Chapter[] = [
         ],
       },
       {
-        id: 'sec-1-3',
-        title: '1.3 인사법 (Dos besos) & 스페인의 식문화',
+        id: 'sec-2-3',
+        title: '2.3 인사법 (Dos besos) & 스페인의 식문화',
         subtitle: '양 볼 인사와 하루 5번의 스페인 식사 주기, Bar 문화',
         rules: [
           {
@@ -126,173 +269,30 @@ export const CHAPTERS_DATA: Chapter[] = [
             title: '스페인 대표 음식 & 음료 어휘 듣기',
             description: '바르(Bar)는 술집과 카페가 합쳐진 친목 사교의 중심지입니다. 스피커 버튼을 눌러 정확한 원어민 발음을 들어보세요.',
             examples: [
-              {
-                es: 'La paella',
-                pronunciation: '라 빠에야',
-                ko: '스페인을 대표하는 전통 쌀 해산물/고기 요리',
-              },
-              {
-                es: 'Gambas al ajillo',
-                pronunciation: '감바스 알 아히요',
-                ko: '마늘과 고추, 올리브 오일에 끓인 새우 요리',
-              },
-              {
-                es: 'Tortilla de patatas',
-                pronunciation: '또르띠야 데 빠따따스',
-                ko: '감자와 계란으로 만든 스페인식 오믈렛',
-              },
-              {
-                es: 'El jamón',
-                pronunciation: '엘 하몬',
-                ko: '스페인 전통 돼지 뒷다리 생햄 (하몽)',
-              },
-              {
-                es: 'El gazpacho',
-                pronunciation: '엘 가스파초',
-                ko: '토마토, 피망, 오이 등을 갈아 시원하게 마시는 차가운 채소 스프',
-              },
-              {
-                es: 'La Sangría',
-                pronunciation: '라 상그리아',
-                ko: '레드와인에 과일과 탄산수를 넣어 만든 스페인 대표 음료',
-              },
-              {
-                es: 'Los Churros',
-                pronunciation: '로스 추로스',
-                ko: '진한 핫초콜릿에 찍어 먹는 스페인 대표 전통 디저트',
-              },
-              {
-                es: 'caña de cerveza',
-                pronunciation: '까냐 데 세르베사',
-                ko: '바(Bar)에서 마시는 시원한 생맥주 (cerveza: 맥주)',
-              },
-              {
-                es: 'vino tinto / vino blanco',
-                pronunciation: '비노 띤또 / 비노 블랑꼬',
-                ko: '레드 와인 / 화이트 와인',
-              },
-              {
-                es: 'café con leche',
-                pronunciation: '까페 꼰 레체',
-                ko: '따뜻한 우유를 넣은 스페인식 카페라떼 (café sólo: 에스프레소)',
-              },
+              { es: 'La paella', pronunciation: '라 빠에야', ko: '스페인을 대표하는 전통 쌀 해산물/고기 요리' },
+              { es: 'Gambas al ajillo', pronunciation: '감바스 알 아히요', ko: '마늘과 고추, 올리브 오일에 끓인 새우 요리' },
+              { es: 'Tortilla de patatas', pronunciation: '또르띠야 데 빠따따스', ko: '감자와 계란으로 만든 스페인식 오믈렛' },
+              { es: 'El jamón', pronunciation: '엘 하몬', ko: '스페인 전통 돼지 뒷다리 생햄 (하몽)' },
+              { es: 'El gazpacho', pronunciation: '엘 가스파초', ko: '토마토 등을 갈아 시원하게 마시는 차가운 채소 스프' },
+              { es: 'La Sangría', pronunciation: '라 상그리아', ko: '레드와인에 과일과 탄산수를 넣어 만든 스페인 대표 음료' },
+              { es: 'Los Churros', pronunciation: '로스 추로스', ko: '진한 핫초콜릿에 찍어 먹는 스페인 대표 전통 디저트' },
+              { es: 'caña de cerveza', pronunciation: '까냐 데 세르베사', ko: '바(Bar)에서 마시는 시원한 생맥주' },
+              { es: 'vino tinto / vino blanco', pronunciation: '비노 띤또 / 비노 블랑꼬', ko: '레드 와인 / 화이트 와인' },
+              { es: 'café con leche', pronunciation: '까페 꼰 레체', ko: '따뜻한 우유를 넣은 스페인식 카페라떼' },
             ],
           },
         ],
       },
     ],
   },
-  {
-    id: 2,
-    title: '제2장: 모음과 자음, 음절 분해 & 강세 규칙',
-    subtitle: '강모음/약모음 구분, 음절 분해 4대 원칙, 강세 위치 4대 법칙',
-    lectureWeek: '2주차',
-    badge: '발음 & 규칙',
-    summary:
-      '스페인어의 5개 모음(강모음 a,e,o / 약모음 i,u)과 이중/삼중모음, 음절을 나누는 규칙(Reglas de silabación) 및 강세 위치(Acentuación)의 4대 법칙을 마스터합니다.',
-    keyTakeaways: [
-      '강모음: a, e, o / 약모음: i, u (약모음에 띨데가 붙으면 강모음으로 승격: río, país).',
-      '음절분해: 모음 사이 자음 1개는 뒷모음(ve-ra-no), 자음 2개는 분리(ver-de), 단 이중자음 및 ch, ll, rr은 분리 불가(cri-sis).',
-      '강모음이 연속되면 무조건 음절 분리: idea -> i-de-a, poema -> po-e-ma.',
-      '강세 규칙 1: 모음 또는 n, s로 끝나면 끝에서 2번째 음절 (ca-ma, Car-men).',
-      '강세 규칙 2: n, s 제외 자음으로 끝나면 마지막 음절 (hos-pi-tal, co-mer).',
-      '강세 규칙 3: 띨데(tilde)가 있으면 규칙 불문하고 해당 음절에 강세 (na-ción, ca-fé).',
-    ],
-    sections: [
-      {
-        id: 'sec-2-1',
-        title: '2.1 모음(Vocales)과 이중/삼중모음 단어',
-        subtitle: '모든 대표 단어의 한글 발음과 원어민 음성을 직접 듣고 익히기',
-        rules: [
-          {
-            title: '5대 기본 모음 대표 단어',
-            description: '스페인어 모음은 5개(a, e, i, o, u)이며, 발음 기호대로 정직하게 소리 납니다.',
-            examples: [
-              { es: 'agua', pronunciation: '아구아', ko: '물 (A a [아] 강모음)' },
-              { es: 'amarillo', pronunciation: '아마리요', ko: '노란색' },
-              { es: 'España', pronunciation: '에스빠냐', ko: '스페인 (E e [에] 강모음)' },
-              { es: 'entrada', pronunciation: '엔뜨라다', ko: '입구' },
-              { es: 'isla', pronunciation: '이슬라', ko: '섬 (I i [이] 약모음)' },
-              { es: 'información', pronunciation: '인포르마시온', ko: '정보' },
-              { es: 'oso', pronunciation: '오소', ko: '곰 (O o [오] 강모음)' },
-              { es: 'orden', pronunciation: '오르덴', ko: '순서' },
-              { es: 'Uruguay', pronunciation: '우루구아이', ko: '우루과이 (U u [우] 약모음)' },
-              { es: 'uno', pronunciation: '우노', ko: '숫자 1' },
-            ],
-          },
-          {
-            title: '이중모음과 삼중모음 핵심 단어 (개별 오디오 듣기)',
-            description: '강모음(a, e, o)과 약모음(i, u)의 결합 원리를 확인하고 각 단어의 스피커 버튼을 눌러보세요.',
-            examples: [
-              { es: 'aire', pronunciation: '아이레', ko: '공기 (강모음 a + 약모음 i 결합)' },
-              { es: 'Europa', pronunciation: '에우로빠', ko: '유럽 (강모음 e + 약모음 u 결합)' },
-              { es: 'piano', pronunciation: '삐아노', ko: '피아노 (약모음 i + 강모음 a 결합)' },
-              { es: 'bueno', pronunciation: '부에노', ko: '좋은 (약모음 u + 강모음 e 결합)' },
-              { es: 'viudo', pronunciation: '비우도', ko: '홀아비 (약모음 i + 약모음 u 결합)' },
-              { es: 'huida', pronunciation: '우이다', ko: '도망 (약모음 u + 약모음 i 결합 / h는 묵음)' },
-              { es: 'Uruguay', pronunciation: '우루구아이', ko: '우루과이 (삼중모음: 약 u + 강 a + 약 y[i])' },
-              { es: 'buey', pronunciation: '부에이', ko: '소 (삼중모음: 약 u + 강 e + 약 y[i], 하나의 모음으로 간주)' },
-            ],
-          },
-        ],
-      },
-      {
-        id: 'sec-2-2',
-        title: '2.2 음절 분해 규칙 (Reglas de silabación)',
-        subtitle: '시험 주관식 단골! 정확한 하이픈 음절 나누기 4대 원칙',
-        rules: [
-          {
-            title: '음절 분해 4대 원칙과 기출 단어 오디오',
-            description: '스피커를 누르면 단어 전체의 발음을 듣고, 하이픈(-) 음절 분해 표기를 확인할 수 있습니다.',
-            examples: [
-              { es: 'verano', pronunciation: '베라노', ko: '여름: ve-ra-no (규칙 1: 모음 사이 자음 1개는 뒷모음에 붙음)' },
-              { es: 'aire', pronunciation: '아이레', ko: '공기: ai-re (이중모음 ai는 한 음절)' },
-              { es: 'verde', pronunciation: '베르데', ko: '녹색: ver-de (규칙 2: 모음 사이 자음 2개는 앞뒤로 분리)' },
-              { es: 'puerto', pronunciation: '뿌에르또', ko: '항구: puer-to (r과 t 분리)' },
-              { es: 'crisis', pronunciation: '끄리시스', ko: '위기: cri-sis (cr 이중자음은 분리 불가)' },
-              { es: 'gloria', pronunciation: '글로리아', ko: '영광: glo-ria (gl 이중자음은 분리 불가)' },
-              { es: 'idea', pronunciation: '이데아', ko: '생각: i-de-a (규칙 3: 연속된 강모음 e-a는 무조건 분리!)' },
-              { es: 'poema', pronunciation: '뽀에마', ko: '시: po-e-ma (연속된 강모음 o-e는 무조건 분리!)' },
-              { es: 'río', pronunciation: 'ㄹ리오', ko: '강: rí-o (규칙 4: 약모음 i에 강세 띨데가 있어 강모음 승격 분리!)' },
-              { es: 'país', pronunciation: '빠이스', ko: '나라: pa-ís (약모음 i에 띨데가 있어 강모음 승격 분리!)' },
-            ],
-            tip: 'río를 rio 한 음절로 쓰면 오답입니다! rí-o 2음절이며, país 역시 pa-ís 2음절입니다. 연속 강모음 idea는 3음절(i-de-a)입니다.',
-          },
-        ],
-      },
-      {
-        id: 'sec-2-3',
-        title: '2.3 스페인어 강세 규칙 (La acentuación)',
-        subtitle: '단어 어디에 악센트가 붙는지 판별하는 4가지 절대 법칙',
-        rules: [
-          {
-            title: '강세 판별 4법칙 대표 단어 & 발음',
-            description: '단어 끝 철자에 따라 강세 위치가 정해집니다. 볼드 처리된 음절에 강세를 두어 발음하세요.',
-            examples: [
-              { es: 'cama', pronunciation: '까마', ko: '침대: ca-ma (법칙 1: 모음 끝 -> 끝에서 2번째 ca에 강세)' },
-              { es: 'Carmen', pronunciation: '까르멘', ko: '까르멘: Car-men (법칙 1: 자음 n 끝 -> 끝에서 2번째 Car에 강세)' },
-              { es: 'hospital', pronunciation: '오스피딸', ko: '병원: hos-pi-tal (법칙 2: 자음 l 끝 -> 마지막 음절 tal에 강세)' },
-              { es: 'comer', pronunciation: '꼬메르', ko: '먹다: co-mer (법칙 2: 자음 r 끝 -> 마지막 음절 mer에 강세)' },
-              { es: 'diario', pronunciation: '디아리오', ko: '일기: dia-rio (법칙 3: 이중모음 dia의 강모음 a에 강세)' },
-              { es: 'jueves', pronunciation: '후에베스', ko: '목요일: jue-ves (이중모음 jue의 강모음 e에 강세)' },
-              { es: 'ruido', pronunciation: 'ㄹ루이도', ko: '소음: rui-do (약+약 이중모음은 뒤쪽 i에 강세)' },
-              { es: 'triunfo', pronunciation: '뜨리운포', ko: '승리: triun-fo (약+약 이중모음은 뒤쪽 u에 강세)' },
-              { es: 'nación', pronunciation: '나씨온', ko: '국가: na-ción (법칙 4: 띨데가 있는 음절에 무조건 강세)' },
-              { es: 'café', pronunciation: '까페', ko: '커피: ca-fé (띨데가 있는 음절에 강세)' },
-              { es: 'adiós', pronunciation: '아디오스', ko: '안녕: a-diós (띨데가 있는 음절에 강세)' },
-            ],
-            tip: 'examen은 n으로 끝나므로 끝에서 2번째인 ex-a-men의 a에 강세가 옵니다. 복수가 되면 exámenes로 음절이 늘어나 본래 a의 강세를 유지하기 위해 띨데가 생깁니다!',
-          },
-        ],
-      },
-    ],
-  },
+
+  // ================= CHAPTER 3: 주격 인칭대명사, SER 동사, Llamarse =================
   {
     id: 3,
     title: '제3장: 주격 인칭대명사, SER 동사, Llamarse 재귀동사',
     subtitle: '스페인어의 6개 인칭 구분, SER 동사 현재형, 이름 묻고 답하기',
     lectureWeek: '3주차 & 4주차',
-    badge: '필수 문법',
+    badge: '인칭 & SER 동사',
     summary:
       '스페인어 기본 주어(1인칭~3인칭 단/복수, 존칭 Usted/Ustedes)와 핵심 불규칙 동사 SER(soy, eres, es...), 그리고 재귀대명사를 동반하는 Llamarse 동사 변화를 배웁니다.',
     keyTakeaways: [
@@ -396,12 +396,14 @@ export const CHAPTERS_DATA: Chapter[] = [
       },
     ],
   },
+
+  // ================= CHAPTER 4: 명사의 성과 수, 관사 =================
   {
     id: 4,
     title: '제4장: 명사의 성과 수, 관사 체계',
     subtitle: '자연적/문법적 성, 시험 단골 불규칙 명사, el agua 특수 규칙, 정관사/부정관사',
     lectureWeek: '3주차 & 4주차 & 5주차',
-    badge: '시험 1순위',
+    badge: '명사 성수 & 관사',
     summary:
       '남성/여성 명사 어미 규칙과 예외(el día, el mapa, el problema, el tema, la mano, la foto), 여성단수 명사 앞 남성관사(el agua, el arma), 복수형 규칙(-s, -es, -ces), 정관사(el, la, los, las) 및 부정관사(un, una, unos, unas)를 마스터합니다.',
     keyTakeaways: [
@@ -479,46 +481,14 @@ export const CHAPTERS_DATA: Chapter[] = [
             title: '복수형 변형 공식 & 대표 예시',
             description: '스페인어 명사 복수화 규칙입니다.',
             examples: [
-              {
-                es: 'el libro -> los libros',
-                pronunciation: '엘 리브로 -> 로스 리브로스',
-                ko: '모음으로 끝남: + -s 붙임 (책 -> 책들)',
-              },
-              {
-                es: 'el hotel -> los hoteles',
-                pronunciation: '엘 오뗄 -> 로스 오뗄레스',
-                ko: '자음으로 끝남: + -es 붙임 (호텔 -> 호텔들)',
-              },
-              {
-                es: 'la cruz -> las cruces',
-                pronunciation: '라 끄루스 -> 라스 끄루세스',
-                ko: '-z로 끝남: -z 제거 후 + -ces (십자가 -> 십자가들)',
-              },
-              {
-                es: 'el lápiz -> los lápices',
-                pronunciation: '엘 라삐스 -> 로스 라삐세스',
-                ko: '-z로 끝남: -z 제거 후 + -ces (연필 -> 연필들)',
-              },
-              {
-                es: 'el cortauñas -> los cortauñas',
-                pronunciation: '엘 꼬르따우냐스 -> 로스 꼬르따우냐스',
-                ko: '-s로 끝나는 복합명사: 형태 불변, 관사만 복수화 (손톱깎이)',
-              },
-              {
-                es: 'las tijeras / las gafas',
-                pronunciation: '라스 띠헤라스 / 라스 가파스',
-                ko: '항상 복수로 쓰이는 명사: 가위 / 안경',
-              },
-              {
-                es: 'el limón -> los limones',
-                pronunciation: '엘 리몬 -> 로스 리모네스',
-                ko: '복수가 될 때 강세 유지 법칙에 따라 악센트 띨데 삭제',
-              },
-              {
-                es: 'el examen -> los exámenes',
-                pronunciation: '엘 엑사멘 -> 로스 엑사메네스',
-                ko: '복수가 될 때 음절이 늘어나 a의 강세를 유지하기 위해 띨데 추가',
-              },
+              { es: 'el libro -> los libros', pronunciation: '엘 리브로 -> 로스 리브로스', ko: '모음으로 끝남: + -s 붙임 (책 -> 책들)' },
+              { es: 'el hotel -> los hoteles', pronunciation: '엘 오뗄 -> 로스 오뗄레스', ko: '자음으로 끝남: + -es 붙임 (호텔 -> 호텔들)' },
+              { es: 'la cruz -> las cruces', pronunciation: '라 끄루스 -> 라스 끄루세스', ko: '-z로 끝남: -z 제거 후 + -ces (십자가 -> 십자가들)' },
+              { es: 'el lápiz -> los lápices', pronunciation: '엘 라삐스 -> 로스 라삐세스', ko: '-z로 끝남: -z 제거 후 + -ces (연필 -> 연필들)' },
+              { es: 'el cortauñas -> los cortauñas', pronunciation: '엘 꼬르따우냐스 -> 로스 꼬르따우냐스', ko: '-s로 끝나는 복합명사: 형태 불변, 관사만 복수화' },
+              { es: 'las tijeras / las gafas', pronunciation: '라스 띠헤라스 / 라스 가파스', ko: '항상 복수로 쓰이는 명사: 가위 / 안경' },
+              { es: 'el limón -> los limones', pronunciation: '엘 리몬 -> 로스 리모네스', ko: '복수가 될 때 강세 유지 법칙에 따라 악센트 띨데 삭제' },
+              { es: 'el examen -> los exámenes', pronunciation: '엘 엑사멘 -> 로스 엑사메네스', ko: '복수가 될 때 음절이 늘어나 a의 강세를 유지하기 위해 띨데 추가' },
             ],
           },
         ],
@@ -543,12 +513,14 @@ export const CHAPTERS_DATA: Chapter[] = [
       },
     ],
   },
+
+  // ================= CHAPTER 5: SER vs ESTAR & 형용사 =================
   {
     id: 5,
     title: '제5장: SER vs ESTAR 동사 완벽 비교 & 형용사 및 어미탈락',
     subtitle: '본질 vs 상태/위치 구별, 형용사 성수일치, 위치별 의미변화, 어미탈락(Apócope)',
     lectureWeek: '4주차 & 5주차',
-    badge: '킬러 문항',
+    badge: 'SER vs ESTAR',
     summary:
       '스페인어 최고의 난관인 SER vs ESTAR의 완벽한 용법 구분, ESTAR 현재형(estoy, estás...), 형용사의 전치/후치 수식, 위치에 따라 뜻이 바뀌는 형용사(viejo, nuevo, pobre, grande), 그리고 남성단수 앞 어미탈락(buen, mal, primer, tercer, gran, san)을 철저히 분석합니다.',
     keyTakeaways: [
@@ -589,81 +561,21 @@ export const CHAPTERS_DATA: Chapter[] = [
             title: 'SER vs ESTAR 핵심 기출 예문 오디오',
             description: '각 예문의 스피커 버튼을 눌러 정확한 원어민 억양과 한글 발음을 함께 확인하세요.',
             examples: [
-              {
-                es: 'Yo soy Álvaro. Soy argentino.',
-                pronunciation: '요 소이 알바로. 소이 아르헨띠노.',
-                ko: '저는 알바로입니다. 아르헨티나 사람입니다. (이름·국적 불변 속성: SER)',
-              },
-              {
-                es: 'Soy médico. Soy optimista.',
-                pronunciation: '소이 메디꼬. 소이 옵띠미스따.',
-                ko: '의사입니다. 나는 낙천적입니다. (직업·성격: SER)',
-              },
-              {
-                es: 'La mesa es pequeña.',
-                pronunciation: '라 메사 에스 뻬께냐.',
-                ko: '그 테이블은 작습니다. (사물의 고유 크기/특성: SER)',
-              },
-              {
-                es: 'Este vino es de España.',
-                pronunciation: '에스떼 비노 에스 데 에스빠냐.',
-                ko: '이 와인은 스페인산입니다. (원산지/출신: SER)',
-              },
-              {
-                es: 'Mis hermanas son altas y delgadas.',
-                pronunciation: '미스 에르마나스 손 알따스 이 델가다스.',
-                ko: '내 여동생들은 키가 크고 날씬하다. (신체 고유 특징: SER)',
-              },
-              {
-                es: 'Estoy un poco cansado.',
-                pronunciation: '에스또이 운 뽀꼬 깐사도.',
-                ko: '나는 조금 피곤합니다. (일시적 신체/피로 상태: ESTAR)',
-              },
-              {
-                es: 'Perú está en América del Sur.',
-                pronunciation: '뻬루 에스따 엔 아메리카 델 수르.',
-                ko: '페루는 남미에 있습니다. (물리적 지리 위치: ESTAR)',
-              },
-              {
-                es: 'Pedro está en la universidad.',
-                pronunciation: '뻬드로 에스따 엔 라 우니베르시다드.',
-                ko: '페드로는 대학교에 있습니다. (사람의 위치: ESTAR)',
-              },
-              {
-                es: 'Nosotros estamos en el teatro.',
-                pronunciation: '노소뜨로스 에스따모스 엔 엘 떼아뜨로.',
-                ko: '우리는 극장에 있습니다. (위치: ESTAR)',
-              },
-              {
-                es: 'La puerta está cerrada.',
-                pronunciation: '라 뿌에르따 에스따 세르라다.',
-                ko: '문이 닫혀 있습니다. (가변적 닫힘 상태: ESTAR)',
-              },
-              {
-                es: 'La ventana está abierta.',
-                pronunciation: '라 벤따나 에스따 아비에르따.',
-                ko: '창문이 열려 있습니다. (가변적 열림 상태: ESTAR)',
-              },
-              {
-                es: 'El café está caliente.',
-                pronunciation: '엘 까페 에스따 까리엔떼.',
-                ko: '커피가 뜨겁습니다. (가변적 온도 상태: ESTAR)',
-              },
-              {
-                es: 'El agua está limpia.',
-                pronunciation: '엘 아구아 에스따 림삐아.',
-                ko: '물이 깨끗합니다. (가변적 청결 상태: ESTAR)',
-              },
-              {
-                es: 'Las sillas están sucias.',
-                pronunciation: '라스 시야스 에스딴 수시아스.',
-                ko: '의자들이 더럽습니다. (가변적 오염 상태: ESTAR)',
-              },
-              {
-                es: 'Mis padres están cansados.',
-                pronunciation: '미스 빠드레스 에스딴 깐사도스.',
-                ko: '부모님께서 피곤해하십니다. (피로 상태: ESTAR)',
-              },
+              { es: 'Yo soy Álvaro. Soy argentino.', pronunciation: '요 소이 알바로. 소이 아르헨띠노.', ko: '저는 알바로입니다. 아르헨티나 사람입니다. (이름·국적 불변 속성: SER)' },
+              { es: 'Soy médico. Soy optimista.', pronunciation: '소이 메디꼬. 소이 옵띠미스따.', ko: '의사입니다. 나는 낙천적입니다. (직업·성격: SER)' },
+              { es: 'La mesa es pequeña.', pronunciation: '라 메사 에스 뻬께냐.', ko: '그 테이블은 작습니다. (사물의 고유 크기/특성: SER)' },
+              { es: 'Este vino es de España.', pronunciation: '에스떼 비노 에스 데 에스빠냐.', ko: '이 와인은 스페인산입니다. (원산지/출신: SER)' },
+              { es: 'Mis hermanas son altas y delgadas.', pronunciation: '미스 에르마나스 손 알따스 이 델가다스.', ko: '내 여동생들은 키가 크고 날씬하다. (신체 고유 특징: SER)' },
+              { es: 'Estoy un poco cansado.', pronunciation: '에스또이 운 뽀꼬 깐사도.', ko: '나는 조금 피곤합니다. (일시적 신체/피로 상태: ESTAR)' },
+              { es: 'Perú está en América del Sur.', pronunciation: '뻬루 에스따 엔 아메리카 델 수르.', ko: '페루는 남미에 있습니다. (물리적 지리 위치: ESTAR)' },
+              { es: 'Pedro está en la universidad.', pronunciation: '뻬드로 에스따 엔 라 우니베르시다드.', ko: '페드로는 대학교에 있습니다. (사람의 위치: ESTAR)' },
+              { es: 'Nosotros estamos en el teatro.', pronunciation: '노소뜨로스 에스따모스 엔 엘 떼아뜨로.', ko: '우리는 극장에 있습니다. (위치: ESTAR)' },
+              { es: 'La puerta está cerrada.', pronunciation: '라 뿌에르따 에스따 세르라다.', ko: '문이 닫혀 있습니다. (가변적 닫힘 상태: ESTAR)' },
+              { es: 'La ventana está abierta.', pronunciation: '라 벤따나 에스따 아비에르따.', ko: '창문이 열려 있습니다. (가변적 열림 상태: ESTAR)' },
+              { es: 'El café está caliente.', pronunciation: '엘 까페 에스따 까리엔떼.', ko: '커피가 뜨겁습니다. (가변적 온도 상태: ESTAR)' },
+              { es: 'El agua está limpia.', pronunciation: '엘 아구아 에스따 림삐아.', ko: '물이 깨끗합니다. (가변적 청결 상태: ESTAR)' },
+              { es: 'Las sillas están sucias.', pronunciation: '라스 시야스 에스딴 수시아스.', ko: '의자들이 더럽습니다. (가변적 오염 상태: ESTAR)' },
+              { es: 'Mis padres están cansados.', pronunciation: '미스 빠드레스 에스딴 깐사도스.', ko: '부모님께서 피곤해하십니다. (피로 상태: ESTAR)' },
             ],
           },
         ],
@@ -677,46 +589,14 @@ export const CHAPTERS_DATA: Chapter[] = [
             title: '위치에 따른 의미 변화 4인방 (소리 및 발음)',
             description: '명사 앞은 "주관적/감정적 뉘앙스", 명사 뒤는 "객관적/사실적 뉘앙스"입니다.',
             examples: [
-              {
-                es: 'un viejo amigo',
-                pronunciation: '운 비에호 아미고',
-                ko: '오랜 친구 (정든, 오랜 사이 - 명사 앞 주관적 의미)',
-              },
-              {
-                es: 'un hombre viejo',
-                pronunciation: '운 옴브레 비에호',
-                ko: '나이 든 노인 (실제 나이가 늙은 - 명사 뒤 객관적 의미)',
-              },
-              {
-                es: 'un nuevo coche',
-                pronunciation: '운 누에보 꼬체',
-                ko: '새로 산 차 (또 하나의 새로운 차 - 명사 앞 주관적 의미)',
-              },
-              {
-                es: 'un coche nuevo',
-                pronunciation: '운 꼬체 누에보',
-                ko: '신품 차 (갓 출고된 신차 - 명사 뒤 객관적 의미)',
-              },
-              {
-                es: 'un pobre hombre',
-                pronunciation: '운 뽀브레 옴브레',
-                ko: '불쌍한 남자 (가련한 - 명사 앞 주관적 의미)',
-              },
-              {
-                es: 'un hombre pobre',
-                pronunciation: '운 옴브레 뽀브레',
-                ko: '가난한 남자 (돈이 없는 빈곤한 - 명사 뒤 객관적 의미)',
-              },
-              {
-                es: 'un gran hombre',
-                pronunciation: '운 그란 옴브레',
-                ko: '위인 / 위대한 사람 (훌륭한 인물 - 명사 앞 주관적 의미)',
-              },
-              {
-                es: 'un hombre grande',
-                pronunciation: '운 옴브레 그란데',
-                ko: '체격이 큰 사람 (물리적으로 덩치가 큰 - 명사 뒤 객관적 의미)',
-              },
+              { es: 'un viejo amigo', pronunciation: '운 비에호 아미고', ko: '오랜 친구 (정든, 오랜 사이 - 명사 앞 주관적 의미)' },
+              { es: 'un hombre viejo', pronunciation: '운 옴브레 비에호', ko: '나이 든 노인 (실제 나이가 늙은 - 명사 뒤 객관적 의미)' },
+              { es: 'un nuevo coche', pronunciation: '운 누에보 꼬체', ko: '새로 산 차 (또 하나의 새로운 차 - 명사 앞 주관적 의미)' },
+              { es: 'un coche nuevo', pronunciation: '운 꼬체 누에보', ko: '신품 차 (갓 출고된 신차 - 명사 뒤 객관적 의미)' },
+              { es: 'un pobre hombre', pronunciation: '운 뽀브레 옴브레', ko: '불쌍한 남자 (가련한 - 명사 앞 주관적 의미)' },
+              { es: 'un hombre pobre', pronunciation: '운 옴브레 뽀브레', ko: '가난한 남자 (돈이 없는 빈곤한 - 명사 뒤 객관적 의미)' },
+              { es: 'un gran hombre', pronunciation: '운 그란 옴브레', ko: '위인 / 위대한 사람 (훌륭한 인물 - 명사 앞 주관적 의미)' },
+              { es: 'un hombre grande', pronunciation: '운 옴브레 그란데', ko: '체격이 큰 사람 (물리적으로 덩치가 큰 - 명사 뒤 객관적 의미)' },
             ],
           },
         ],
@@ -730,41 +610,13 @@ export const CHAPTERS_DATA: Chapter[] = [
             title: '3대 어미 탈락 규칙 기출 예문',
             description: '스피커를 눌러 정확한 원어민 발음과 탈락 형태를 확인하세요.',
             examples: [
-              {
-                es: 'buen amigo',
-                pronunciation: '부엔 아미고',
-                ko: '좋은 친구 (bueno -> buen 탈락 / 남성 단수 앞)',
-              },
-              {
-                es: 'mal día',
-                pronunciation: '말 디아',
-                ko: '나쁜 하루 (malo -> mal 탈락 / 남성 단수 앞)',
-              },
-              {
-                es: 'el primer día',
-                pronunciation: '엘 쁘리메르 디아',
-                ko: '첫째 날 (primero -> primer 탈락 / 남성 단수 앞)',
-              },
-              {
-                es: 'el tercer piso',
-                pronunciation: '엘 떼르세르 삐소',
-                ko: '3층 (tercero -> tercer 탈락 / 남성 단수 앞)',
-              },
-              {
-                es: 'Santo Domingo',
-                pronunciation: '산또 도밍고',
-                ko: '도미니카 공화국 수도 (Do-로 시작하여 -to 탈락 안 됨!)',
-              },
-              {
-                es: 'San Diego',
-                pronunciation: '산 디에고',
-                ko: '샌디에이고 (Di-이므로 San으로 정상 탈락)',
-              },
-              {
-                es: 'Teresa es una gran mujer.',
-                pronunciation: '떼레사 에스 우나 그란 무헤르.',
-                ko: '테레사는 위대한 여성이다. (grande는 여성 단수 앞에서도 gran으로 탈락!)',
-              },
+              { es: 'buen amigo', pronunciation: '부엔 아미고', ko: '좋은 친구 (bueno -> buen 탈락 / 남성 단수 앞)' },
+              { es: 'mal día', pronunciation: '말 디아', ko: '나쁜 하루 (malo -> mal 탈락 / 남성 단수 앞)' },
+              { es: 'el primer día', pronunciation: '엘 쁘리메르 디아', ko: '첫째 날 (primero -> primer 탈락 / 남성 단수 앞)' },
+              { es: 'el tercer piso', pronunciation: '엘 떼르세르 삐소', ko: '3층 (tercero -> tercer 탈락 / 남성 단수 앞)' },
+              { es: 'Santo Domingo', pronunciation: '산또 도밍고', ko: '도미니카 공화국 수도 (Do-로 시작하여 -to 탈락 안 됨!)' },
+              { es: 'San Diego', pronunciation: '산 디에고', ko: '샌디에이고 (Di-이므로 San으로 정상 탈락)' },
+              { es: 'Teresa es una gran mujer.', pronunciation: '떼레사 에스 우나 그란 무헤르.', ko: '테레사는 위대한 여성이다. (grande는 여성 단수 앞에서도 gran으로 탈락!)' },
             ],
             tip: '시험 1순위 함정:\n1. Santo Domingo는 Do-로 시작하므로 탈락되지 않습니다!\n2. San Diego는 Di-이므로 탈락하여 San이 됩니다.\n3. Teresa es una gran mujer: grande는 여성단수 앞에서도 gran으로 탈락합니다!\n4. primer día: 첫째 날은 primero día가 아니라 primer día입니다.',
           },
@@ -772,19 +624,20 @@ export const CHAPTERS_DATA: Chapter[] = [
       },
     ],
   },
+
+  // ================= CHAPTER 6: 국명과 국적 형용사 & 호칭 =================
   {
     id: 6,
     title: '제6장: 국명과 국적 형용사, 출신 표현 & 호칭',
     subtitle: 'SER DE + 지명, 25개국 국적 형용사 남녀형, 성 앞과 이름 앞 호칭 구분',
     lectureWeek: '5주차',
-    badge: '어휘 & 표현',
+    badge: '출신 & 국적형용사',
     summary:
       '출신을 나타내는 SER DE 구문과 25개 주요국의 남성형/여성형 국적 형용사 규칙, 그리고 성(family name) 앞에 붙는 señor/señora/señorita와 이름 앞에 붙는 Don/Doña 호칭법을 배웁니다.',
     keyTakeaways: [
       '출신 표현: SER DE + 지명 (ej: Juan y yo somos de México, Mis abuelos son de Estados Unidos).',
-      '국적 형용사는 명사의 성에 맞춰 남성형과 여성형으로 일치시켜야 합니다 (자음으로 끝나는 남성 국적형용사는 뒤에 -a를 붙이며 자음 위의 띨데가 탈락: español/española, francés/francesa, alemán/alemana, inglés/inglesa, japonés/japonesa).',
-      '-í로 끝나는 국적은 남녀 동일: iraquí, iraní, marroquí.',
-      '-ense, -ita로 끝나는 국적은 남녀 동일: estadounidense, vietnamita, belga.',
+      '국적 형용사는 명사의 성에 맞춰 남성형과 여성형으로 일치시켜야 합니다.',
+      '-í, -ense, -ita로 끝나는 국적은 남녀 동일: iraquí, estadounidense, vietnamita, belga.',
       '호칭명사 1: 성(family name) 앞 -> señor (Sr.), señora (Sra.), señorita (Srta.).',
       '호칭명사 2: 중년 남녀의 이름(First name) 앞 -> Don, Doña (Don Quijote, Doña Carmen).',
     ],
@@ -798,26 +651,10 @@ export const CHAPTERS_DATA: Chapter[] = [
             title: 'SER DE 관용 구문 예문 & 발음',
             description: 'SER 동사에 전치사 de를 결합하여 출신지나 원산지를 표현합니다.',
             examples: [
-              {
-                es: '¿De dónde eres? - Soy de Corea.',
-                pronunciation: '데 돈데 에레스? - 소이 데 꼬레아.',
-                ko: '너는 어디 출신이니? - 나는 한국 출신이야.',
-              },
-              {
-                es: 'Juan y yo somos de México.',
-                pronunciation: '후안 이 요 소모스 데 메히꼬.',
-                ko: '후안과 나는 멕시코 출신입니다. [메히꼬 주의!]',
-              },
-              {
-                es: 'Mis abuelos son de Estados Unidos.',
-                pronunciation: '미스 아부엘로스 손 데 에스따도스 우니도스.',
-                ko: '내 조부모님은 미국 출신이십니다.',
-              },
-              {
-                es: 'Este vino es de España.',
-                pronunciation: '에스떼 비노 에스 데 에스빠냐.',
-                ko: '이 와인은 스페인산입니다.',
-              },
+              { es: '¿De dónde eres? - Soy de Corea.', pronunciation: '데 돈데 에레스? - 소이 데 꼬레아.', ko: '너는 어디 출신이니? - 나는 한국 출신이야.' },
+              { es: 'Juan y yo somos de México.', pronunciation: '후안 이 요 소모스 데 메히꼬.', ko: '후안과 나는 멕시코 출신입니다. [메히꼬 주의!]' },
+              { es: 'Mis abuelos son de Estados Unidos.', pronunciation: '미스 아부엘로스 손 데 에스따도스 우니도스.', ko: '내 조부모님은 미국 출신이십니다.' },
+              { es: 'Este vino es de España.', pronunciation: '에스떼 비노 에스 데 에스빠냐.', ko: '이 와인은 스페인산입니다.' },
             ],
           },
         ],
@@ -861,36 +698,12 @@ export const CHAPTERS_DATA: Chapter[] = [
               ],
             },
             examples: [
-              {
-                es: 'Él es francés. / Ella es francesa.',
-                pronunciation: '엘 에스 프랑세스. / 에야 에스 프랑세사.',
-                ko: '그는 프랑스인이다. / 그녀는 프랑스인이다. (자음 복수화 시 띨데 탈락)',
-              },
-              {
-                es: 'Ellos son chinos. / Ellas son chilenas.',
-                pronunciation: '에요스 손 치노스. / 에야스 손 칠레나스.',
-                ko: '그들은 중국인들이다. / 그녀들은 칠레인들이다.',
-              },
-              {
-                es: 'Nosotras somos coreanas.',
-                pronunciation: '노소뜨라스 소모스 꼬레아나스.',
-                ko: '우리 여성들은 한국인이다.',
-              },
-              {
-                es: 'La profesora es mexicana.',
-                pronunciation: '라 쁘로페소라 에스 메히까나.',
-                ko: '그 여성 교수님은 멕시코인입니다.',
-              },
-              {
-                es: 'El periodista es japonés.',
-                pronunciation: '엘 뻬리오디스따 에스 하포네스.',
-                ko: '그 기자는 일본인입니다.',
-              },
-              {
-                es: 'Los turistas son ingleses.',
-                pronunciation: '로스 뚜리스따스 손 잉글레세스.',
-                ko: '그 관광객들은 영국인들입니다. (turista 양성명사)',
-              },
+              { es: 'Él es francés. / Ella es francesa.', pronunciation: '엘 에스 프랑세스. / 에야 에스 프랑세사.', ko: '그는 프랑스인이다. / 그녀는 프랑스인이다.' },
+              { es: 'Ellos son chinos. / Ellas son chilenas.', pronunciation: '에요스 손 치노스. / 에야스 손 칠레나스.', ko: '그들은 중국인들이다. / 그녀들은 칠레인들이다.' },
+              { es: 'Nosotras somos coreanas.', pronunciation: '노소뜨라스 소모스 꼬레아나스.', ko: '우리 여성들은 한국인이다.' },
+              { es: 'La profesora es mexicana.', pronunciation: '라 쁘로페소라 에스 메히까나.', ko: '그 여성 교수님은 멕시코인입니다.' },
+              { es: 'El periodista es japonés.', pronunciation: '엘 뻬리오디스따 에스 하포네스.', ko: '그 기자는 일본인입니다.' },
+              { es: 'Los turistas son ingleses.', pronunciation: '로스 뚜리스따스 손 잉글레세스.', ko: '그 관광객들은 영국인들입니다.' },
             ],
           },
         ],
@@ -904,31 +717,11 @@ export const CHAPTERS_DATA: Chapter[] = [
             title: '호칭 구분 공식 & 발음',
             description: '한국의 "~씨", "~선생님"에 해당하는 호칭 체계입니다.',
             examples: [
-              {
-                es: 'el señor Gonzáles (Sr.)',
-                pronunciation: '엘 세뇨르 곤살레스',
-                ko: '곤살레스 씨 (특정인의 성 앞에 붙는 남성 호칭)',
-              },
-              {
-                es: 'la señora Díaz (Sra.)',
-                pronunciation: '라 세뇨라 디아스',
-                ko: '디아스 여사 (특정인의 성 앞에 붙는 여성 호칭)',
-              },
-              {
-                es: 'la señorita López (Srta.)',
-                pronunciation: '라 세뇨리따 로뻬스',
-                ko: '로뻬스 양 (특정인의 성 앞에 붙는 미혼 여성 호칭)',
-              },
-              {
-                es: 'Don Quijote',
-                pronunciation: '돈 끼호떼',
-                ko: '돈키호테 님 (중년 남성의 이름 First name 앞에 붙는 존칭)',
-              },
-              {
-                es: 'Doña Carmen',
-                pronunciation: '도냐 까르멘',
-                ko: '까르멘 님 (중년 여성의 이름 First name 앞에 붙는 존칭)',
-              },
+              { es: 'el señor Gonzáles (Sr.)', pronunciation: '엘 세뇨르 곤살레스', ko: '곤살레스 씨 (특정인의 성 앞에 붙는 남성 호칭)' },
+              { es: 'la señora Díaz (Sra.)', pronunciation: '라 세뇨라 디아스', ko: '디아스 여사 (특정인의 성 앞에 붙는 여성 호칭)' },
+              { es: 'la señorita López (Srta.)', pronunciation: '라 세뇨리따 로뻬스', ko: '로뻬스 양 (특정인의 성 앞에 붙는 미혼 여성 호칭)' },
+              { es: 'Don Quijote', pronunciation: '돈 끼호떼', ko: '돈키호테 님 (중년 남성의 이름 First name 앞에 붙는 존칭)' },
+              { es: 'Doña Carmen', pronunciation: '도냐 까르멘', ko: '까르멘 님 (중년 여성의 이름 First name 앞에 붙는 존칭)' },
             ],
             tip: 'Don Gonzáles라고 쓰면 오답입니다! 성 앞에는 señor이며, 이름 Carmen 앞에는 Doña를 씁니다.',
           },
@@ -936,12 +729,14 @@ export const CHAPTERS_DATA: Chapter[] = [
       },
     ],
   },
+
+  // ================= CHAPTER 7: 지시사 & 소유사 & 의문사 =================
   {
     id: 7,
     title: '제7장: 지시사 & 소유사 & 의문사 & 동요 어휘',
     subtitle: 'este/ese/aquel, 중성 esto/eso/aquello, 소유형용사 전치/후치, Tiburón bebé',
     lectureWeek: '6주차',
-    badge: '표현 & 어휘',
+    badge: '지시사 & 소유사',
     summary:
       '지시형용사(명사 수식)와 지시대명사(주어), 지시사의 중성형(esto, eso, aquello)의 특징, 소유형용사 전치형(mi, tu, su...)과 후치형 및 소유대명사(el mío...), 동요 "Tiburón bebé"의 핵심 단어를 정리합니다.',
     keyTakeaways: [
@@ -969,21 +764,9 @@ export const CHAPTERS_DATA: Chapter[] = [
               ],
             },
             examples: [
-              {
-                es: 'Este es mi amigo.',
-                pronunciation: '에스떼 에스 미 아미고.',
-                ko: '이 사람은 내 친구입니다. (남성 단수 지시대명사)',
-              },
-              {
-                es: '¿Qué es esto?',
-                pronunciation: '께 에스 에스또?',
-                ko: '이것은 무엇입니까? (정체를 모르는 사물: 중성 지시대명사 esto)',
-              },
-              {
-                es: 'estos libros',
-                pronunciation: '에스또스 리브로스',
-                ko: '이 책들 (남성 복수 명사 앞 지시형용사 estos)',
-              },
+              { es: 'Este es mi amigo.', pronunciation: '에스떼 에스 미 아미고.', ko: '이 사람은 내 친구입니다. (남성 단수 지시대명사)' },
+              { es: '¿Qué es esto?', pronunciation: '께 에스 에스또?', ko: '이것은 무엇입니까? (정체를 모르는 사물: 중성 지시대명사 esto)' },
+              { es: 'estos libros', pronunciation: '에스또스 리브로스', ko: '이 책들 (남성 복수 명사 앞 지시형용사 estos)' },
             ],
             tip: 'esto libro는 문법적으로 불가능합니다! esto, eso, aquello는 중성 지시대명사로 뒤에 명사가 올 수 없습니다. 명사를 수식할 때는 este libro처럼 남성 단수 지시형용사를 써야 합니다.',
           },
@@ -998,21 +781,9 @@ export const CHAPTERS_DATA: Chapter[] = [
             title: '소유사 체계 예문 & 발음',
             description: '소유자의 인칭과 소유물의 성·수에 따라 일치합니다.',
             examples: [
-              {
-                es: 'Este es mi amigo.',
-                pronunciation: '에스떼 에스 미 아미고.',
-                ko: '이 사람은 내 친구입니다. (명사 앞 전치형: mi)',
-              },
-              {
-                es: 'Un amigo mío.',
-                pronunciation: '운 아미고 미오.',
-                ko: '내 친구 중 한 명. (명사 뒤 후치형: mío)',
-              },
-              {
-                es: '¿Este libro es tuyo? - Sí, es el mío.',
-                pronunciation: '에스떼 리브로 에스 뚜요? - 시, 에스 엘 미오.',
-                ko: '이 책 네 것이니? - 응, 내 거야. (소유대명사: el mío)',
-              },
+              { es: 'Este es mi amigo.', pronunciation: '에스떼 에스 미 아미고.', ko: '이 사람은 내 친구입니다. (명사 앞 전치형: mi)' },
+              { es: 'Un amigo mío.', pronunciation: '운 아미고 미오.', ko: '내 친구 중 한 명. (명사 뒤 후치형: mío)' },
+              { es: '¿Este libro es tuyo? - Sí, es el mío.', pronunciation: '에스떼 리브로 에스 뚜요? - 시, 에스 엘 미오.', ko: '이 책 네 것이니? - 응, 내 거야. (소유대명사: el mío)' },
             ],
           },
         ],
@@ -1026,53 +797,27 @@ export const CHAPTERS_DATA: Chapter[] = [
             title: 'Tiburón bebé 핵심 어휘 & 가사 오디오',
             description: '강의 슬라이드에 수록된 필수 어휘입니다. 스피커를 눌러 원어민 발음을 들어보세요.',
             examples: [
-              {
-                es: 'Tiburón bebé, du ru du ru',
-                pronunciation: '띠부론 베베, 두 루 두 루',
-                ko: '아기 상어, 뚜 루 뚜 루 (tiburón: 상어, bebé: 갓난아이)',
-              },
-              {
-                es: 'Tiburón mamá / Tiburón papá',
-                pronunciation: '띠부론 마마 / 띠부론 파파',
-                ko: '엄마 상어 / 아빠 상어',
-              },
-              {
-                es: 'Tiburón abuela / Tiburón abuelo',
-                pronunciation: '띠부론 아부엘라 / 띠부론 아부엘로',
-                ko: '할머니 상어 / 할아버지 상어',
-              },
-              {
-                es: '¡A cazar!',
-                pronunciation: '아 까사르!',
-                ko: '사냥하러 가자! (cazar: 사냥하다, 잡다)',
-              },
-              {
-                es: '¡A escapar!',
-                pronunciation: '아 에스까빠르!',
-                ko: '도망치자! (escapar: 도망치다)',
-              },
-              {
-                es: '¡Salvos ya!',
-                pronunciation: '살보스 야!',
-                ko: '이제 다 살았다! (salvo: 무사한/안전한, ya: 이미/이제)',
-              },
-              {
-                es: '¡Se acabó!',
-                pronunciation: '세 아까보!',
-                ko: '끝났다! (acabar: 끝나다)',
-              },
+              { es: 'Tiburón bebé, du ru du ru', pronunciation: '띠부론 베베, 두 루 두 루', ko: '아기 상어, 뚜 루 뚜 루 (tiburón: 상어, bebé: 갓난아이)' },
+              { es: 'Tiburón mamá / Tiburón papá', pronunciation: '띠부론 마마 / 띠부론 파파', ko: '엄마 상어 / 아빠 상어' },
+              { es: 'Tiburón abuela / Tiburón abuelo', pronunciation: '띠부론 아부엘라 / 띠부론 아부엘로', ko: '할머니 상어 / 할아버지 상어' },
+              { es: '¡A cazar!', pronunciation: '아 까사르!', ko: '사냥하러 가자! (cazar: 사냥하다, 잡다)' },
+              { es: '¡A escapar!', pronunciation: '아 에스까빠르!', ko: '도망치자! (escapar: 도망치다)' },
+              { es: '¡Salvos ya!', pronunciation: '살보스 야!', ko: '이제 다 살았다! (salvo: 무사한/안전한, ya: 이미/이제)' },
+              { es: '¡Se acabó!', pronunciation: '세 아까보!', ko: '끝났다! (acabar: 끝나다)' },
             ],
           },
         ],
       },
     ],
   },
+
+  // ================= CHAPTER 8: 무인칭동사 Hay vs ESTAR, 숫자 =================
   {
     id: 8,
     title: '제8장: 무인칭동사 Hay vs ESTAR, 의문사 Cuánto & 숫자(0~100)',
     subtitle: '존재 유무(불특정) vs 위치(특정), 위치 표현 전치사구, 숫자 철자 0부터 100',
     lectureWeek: '7주차',
-    badge: '시험 1순위',
+    badge: 'Hay vs ESTAR & 숫자',
     summary:
       '무인칭동사 Hay(불특정 대상의 존재 유무, 수량)와 ESTAR(특정 대상의 위치)의 완벽 구분 공식, 위치 전치사구(delante de, detrás de 등), 의문사 Cuánto의 성수변화, 그리고 0~100까지의 스페인어 숫자 철자를 총정리합니다.',
     keyTakeaways: [
@@ -1092,91 +837,23 @@ export const CHAPTERS_DATA: Chapter[] = [
             title: 'Hay vs ESTAR 기출 예문 오디오',
             description: '불특정 대상(Hay)과 특정 대상(ESTAR)의 차이를 원어민 음성으로 직접 들어보세요.',
             examples: [
-              {
-                es: 'Delante del hospital hay una ambulancia.',
-                pronunciation: '델란떼 델 오스피딸 아이 우나 암불란시아.',
-                ko: '병원 앞에 앰뷸런스 한 대가 있습니다. (불특정 대상 una: hay)',
-              },
-              {
-                es: '¿Dónde están las llaves?',
-                pronunciation: '돈데 에스딴 라스 야베스?',
-                ko: '열쇠들이 어디 있습니까? (정관사 특정 대상 las: están)',
-              },
-              {
-                es: 'Hay un árbol delante de mi casa.',
-                pronunciation: '아이 운 아르볼 델란떼 데 미 까사.',
-                ko: '내 집 앞에 나무 한 그루가 있습니다. (불특정: hay)',
-              },
-              {
-                es: 'El cine está a la derecha.',
-                pronunciation: '엘 시네 에스따 아 라 데레차.',
-                ko: '그 영화관은 오른쪽에 있습니다. (정관사 특정 대상 el: está)',
-              },
-              {
-                es: 'En la plaza hay una iglesia.',
-                pronunciation: '엔 라 쁠라사 아이 우나 이글레시아.',
-                ko: '광장에 교회 하나가 있습니다. (불특정: hay)',
-              },
-              {
-                es: 'Al lado del hotel está el banco.',
-                pronunciation: '알 라도 델 오뗄 에스따 엘 방꼬.',
-                ko: '호텔 옆에 그 은행이 있습니다. (정관사: está)',
-              },
-              {
-                es: 'Las botellas están sobre la mesa.',
-                pronunciation: '라스 보떼야스 에스딴 소브레 라 메사.',
-                ko: '그 병들은 테이블 위에 있습니다. (정관사: están)',
-              },
-              {
-                es: 'Hay mucha gente en la calle.',
-                pronunciation: '아이 무차 헨떼 엔 라 까예.',
-                ko: '거리에 많은 사람이 있습니다. (수량 mucha: hay)',
-              },
-              {
-                es: '¿Hay una farmacia cerca de aquí?',
-                pronunciation: '아이 우나 파르마시아 세르까 데 아끼?',
-                ko: '이 근처에 약국이 하나 있나요? (불특정 약국: hay)',
-              },
-              {
-                es: '¿Está la farmacia Seúl cerca de aquí?',
-                pronunciation: '에스따 라 파르마시아 세울 세르까 데 아끼?',
-                ko: '서울 약국이 이 근처에 있나요? (특정 상호 약국: está)',
-              },
-              {
-                es: 'El cuarto de baño está al fondo del pasillo.',
-                pronunciation: '엘 꾸아르또 데 바뇨 에스따 알 폰도 델 빠시요.',
-                ko: '화장실은 복도 끝에 있습니다. (특정 대상: está)',
-              },
-              {
-                es: '¿Dónde están mis libros?',
-                pronunciation: '돈데 에스딴 미스 리브로스?',
-                ko: '내 책들이 어디 있나요? (소유사 mis: están)',
-              },
-              {
-                es: '¿Cuántos estudiantes hay en la clase?',
-                pronunciation: '꽌또스 에스뚜디안떼스 아이 엔 라 끌라세?',
-                ko: '교실에 학생이 몇 명 있습니까? (수량 존재 여부: hay)',
-              },
-              {
-                es: 'Hay unos cinco estudiantes en la clase.',
-                pronunciation: '아이 우노스 싱꼬 에스뚜디안떼스 엔 라 끌라세.',
-                ko: '교실에 약 다섯 명의 학생이 있습니다. (숫자 수량: hay)',
-              },
-              {
-                es: 'Hay un supermercado enfrente de mi casa.',
-                pronunciation: '아이 운 수뻬르메르까도 엔프렌떼 데 미 까사.',
-                ko: '내 집 맞은편에 슈퍼마켓 하나가 있습니다. (불특정: hay)',
-              },
-              {
-                es: '¿Dónde está el supermercado Cheil?',
-                pronunciation: '돈데 에스따 엘 수뻬르메르까도 제일?',
-                ko: '제일 슈퍼마켓은 어디 있나요? (특정 상호: está)',
-              },
-              {
-                es: 'Nuestra oficina está detrás de aquel edificio.',
-                pronunciation: '누에스뜨라 오피시나 에스따 데뜨라스 데 아껠 에디피시오.',
-                ko: '우리 사무실은 저 건물 뒤에 있습니다. (소유사 특정: está)',
-              },
+              { es: 'Delante del hospital hay una ambulancia.', pronunciation: '델란떼 델 오스피딸 아이 우나 암불란시아.', ko: '병원 앞에 앰뷸런스 한 대가 있습니다. (불특정 대상 una: hay)' },
+              { es: '¿Dónde están las llaves?', pronunciation: '돈데 에스딴 라스 야베스?', ko: '열쇠들이 어디 있습니까? (정관사 특정 대상 las: están)' },
+              { es: 'Hay un árbol delante de mi casa.', pronunciation: '아이 운 아르볼 델란떼 데 미 까사.', ko: '내 집 앞에 나무 한 그루가 있습니다. (불특정: hay)' },
+              { es: 'El cine está a la derecha.', pronunciation: '엘 시네 에스따 아 라 데레차.', ko: '그 영화관은 오른쪽에 있습니다. (정관사 특정 대상 el: está)' },
+              { es: 'En la plaza hay una iglesia.', pronunciation: '엔 라 쁠라사 아이 우나 이글레시아.', ko: '광장에 교회 하나가 있습니다. (불특정: hay)' },
+              { es: 'Al lado del hotel está el banco.', pronunciation: '알 라도 델 오뗄 에스따 엘 방꼬.', ko: '호텔 옆에 그 은행이 있습니다. (정관사: está)' },
+              { es: 'Las botellas están sobre la mesa.', pronunciation: '라스 보떼야스 에스딴 소브레 라 메사.', ko: '그 병들은 테이블 위에 있습니다. (정관사: están)' },
+              { es: 'Hay mucha gente en la calle.', pronunciation: '아이 무차 헨떼 엔 라 까예.', ko: '거리에 많은 사람이 있습니다. (수량 mucha: hay)' },
+              { es: '¿Hay una farmacia cerca de aquí?', pronunciation: '아이 우나 파르마시아 세르까 데 아끼?', ko: '이 근처에 약국이 하나 있나요? (불특정 약국: hay)' },
+              { es: '¿Está la farmacia Seúl cerca de aquí?', pronunciation: '에스따 라 파르마시아 세울 세르까 데 아끼?', ko: '서울 약국이 이 근처에 있나요? (특정 상호 약국: está)' },
+              { es: 'El cuarto de baño está al fondo del pasillo.', pronunciation: '엘 꾸아르또 데 바뇨 에스따 알 폰도 델 빠시요.', ko: '화장실은 복도 끝에 있습니다. (특정 대상: está)' },
+              { es: '¿Dónde están mis libros?', pronunciation: '돈데 에스딴 미스 리브로스?', ko: '내 책들이 어디 있나요? (소유사 mis: están)' },
+              { es: '¿Cuántos estudiantes hay en la clase?', pronunciation: '꽌또스 에스뚜디안떼스 아이 엔 라 끌라세?', ko: '교실에 학생이 몇 명 있습니까? (수량 존재 여부: hay)' },
+              { es: 'Hay unos cinco estudiantes en la clase.', pronunciation: '아이 우노스 싱꼬 에스뚜디안떼스 엔 라 끌라세.', ko: '교실에 약 다섯 명의 학생이 있습니다. (숫자 수량: hay)' },
+              { es: 'Hay un supermercado enfrente de mi casa.', pronunciation: '아이 운 수뻬르메르까도 엔프렌떼 데 미 까사.', ko: '내 집 맞은편에 슈퍼마켓 하나가 있습니다. (불특정: hay)' },
+              { es: '¿Dónde está el supermercado Cheil?', pronunciation: '돈데 에스따 엘 수뻬르메르까도 제일?', ko: '제일 슈퍼마켓은 어디 있나요? (특정 상호: está)' },
+              { es: 'Nuestra oficina está detrás de aquel edificio.', pronunciation: '누에스뜨라 오피시나 에스따 데뜨라스 데 아껠 에디피시오.', ko: '우리 사무실은 저 건물 뒤에 있습니다. (소유사 특정: está)' },
             ],
             tip: '초간단 공식: 빈칸 뒤나 주어에 el, la, los, las, mis, 고유명사가 보이면 무조건 ESTAR! un, una, muchos, 숫자, 의문사 Cuántos가 보이면 무조건 HAY입니다!',
           },
@@ -1227,21 +904,258 @@ export const CHAPTERS_DATA: Chapter[] = [
               ],
             },
             examples: [
-              {
-                es: 'dieciséis / veintidós / veinticinco',
-                pronunciation: '디에시세이스 / 베인띠도스 / 베인띠싱꼬',
-                ko: '16 (띨데 필수) / 22 (띨데 필수) / 25',
-              },
-              {
-                es: 'treinta y uno',
-                pronunciation: '뜨레인따 이 우노',
-                ko: '31 (30대부터는 띄어쓰기)',
-              },
-              {
-                es: 'sesenta / setenta / cien',
-                pronunciation: '세센따 / 세뗀따 / 시엔',
-                ko: '60 / 70 / 100',
-              },
+              { es: 'dieciséis / veintidós / veinticinco', pronunciation: '디에시세이스 / 베인띠도스 / 베인띠싱꼬', ko: '16 (띨데 필수) / 22 (띨데 필수) / 25' },
+              { es: 'treinta y uno', pronunciation: '뜨레인따 이 우노', ko: '31 (30대부터는 띄어쓰기)' },
+              { es: 'sesenta / setenta / cien', pronunciation: '세센따 / 세뗀따 / 시엔', ko: '60 / 70 / 100' },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+
+  // ================= CHAPTER 9: 한림대 스페인어 필수 단어장 =================
+  {
+    id: 9,
+    title: '제9장: 시험 필수 어휘 보물창고 (Vocabulario Esencial)',
+    subtitle: '품사별·테마별 5단계 체계: 인사/표현, 명사, 동사, 반의어 형용사, 미식/바르 어휘',
+    lectureWeek: '전체 범위 통합 필수 보카',
+    badge: '필수 어휘집',
+    summary:
+      '초보자가 반드시 외워야 할 핵심 단어와 중간·기말고사 단답형/작문(40문제 중 20문항, 60점 배점)에 직접 출제되는 어휘를 5대 핵심 체계로 재구성했습니다. 모든 단어는 원어민 발음(TTS)과 한글 발음 가이드가 함께 제공됩니다.',
+    keyTakeaways: [
+      '1단계: 인사, 안부, 감사, 부탁 및 일상 소통 필수 표현 마스터.',
+      '2단계: 성별(남성 el vs 여성 la)을 함께 암기하는 사물·장소·가족 필수 명사.',
+      '3단계: 문장을 만드는 3대 핵심 동사(ser, estar, hay) 및 일상 행동 동사 25선.',
+      '4단계: 시험에 짝으로 출제되는 필수 반의어 형용사 20선 (grande ↔ pequeño 등).',
+      '5단계: 강의 3주차 & 5주차 핵심인 스페인 바르(Bar) 문화 및 음식·음료 어휘 완벽 정복.',
+    ],
+    sections: [
+      {
+        id: 'sec-9-1',
+        title: '9.1 [핵심 소통] 인사, 안부, 감사 & 일상 필수 표현 (Saludos y Cortesía)',
+        subtitle: '스페인어 첫 만남과 일상생활에서 가장 먼저 입 밖으로 나와야 하는 표현',
+        rules: [
+          {
+            title: '만남 & 시간대별 인사',
+            description: '스피커를 누르면 원어민의 정확한 억양을 들을 수 있습니다.',
+            examples: [
+              { es: '¡Hola!', pronunciation: '올라', ko: '안녕! / 안녕하세요! (격식/비격식 공통)' },
+              { es: '¡Buenos días!', pronunciation: '부에노스 디아스', ko: '좋은 아침입니다! (아침 인사: 남성 복수 días)' },
+              { es: '¡Buenas tardes!', pronunciation: '부에나스 따르데스', ko: '좋은 오후입니다! (오후 12시~일몰: 여성 복수 tardes)' },
+              { es: '¡Buenas noches!', pronunciation: '부에나스 노체스', ko: '좋은 저녁입니다! / 안녕히 주무세요 (일몰 후/밤: 여성 복수 noches)' },
+            ],
+          },
+          {
+            title: '안부 묻기 & 응답',
+            description: '상대방의 상태를 묻고 답하는 표준 회화 표현입니다.',
+            examples: [
+              { es: '¿Cómo estás?', pronunciation: '꼬모 에스따스?', ko: '어떻게 지내니? / 잘 지내? (친한 사이 tú)' },
+              { es: '¿Cómo está usted?', pronunciation: '꼬모 에스따 우스뗃?', ko: '어떻게 지내십니까? (존칭 usted)' },
+              { es: 'Estoy muy bien, gracias.', pronunciation: '에스또이 무이 비엔, 그라시아스.', ko: '매우 잘 지내요, 감사합니다.' },
+              { es: '¿Y tú?', pronunciation: '이 뚜?', ko: '그리고 너는? (너는 어때?)' },
+              { es: 'Mucho gusto. / Encantado(a).', pronunciation: '무초 구스또 / 엔깐따도', ko: '만나서 반갑습니다.' },
+            ],
+          },
+          {
+            title: '감사, 사과, 정중한 부탁 & 작별',
+            description: '스페인 문화에서 가장 예의 바르게 쓰이는 필수 표현입니다.',
+            examples: [
+              { es: 'Muchas gracias.', pronunciation: '무차스 그라시아스.', ko: '대단히 감사합니다.' },
+              { es: 'De nada. / No hay de qué.', pronunciation: '데 나다 / 노 아이 데 께.', ko: '천만에요. / 별말씀을요.' },
+              { es: 'Por favor.', pronunciation: '뽀르 파보르.', ko: '부탁합니다. / 실례지만~ (Please)' },
+              { es: 'Perdón. / Disculpe.', pronunciation: '뻬르돈 / 디스꿀뻬.', ko: '죄송합니다. / 실례합니다.' },
+              { es: '¡Adiós!', pronunciation: '아디오스!', ko: '안녕히 가세요! (작별 인사)' },
+              { es: 'Hasta luego.', pronunciation: '아스따 루에고.', ko: '나중에 또 봐요. (See you later)' },
+              { es: 'Hasta mañana.', pronunciation: '아스따 마냐나.', ko: '내일 봐요. (See you tomorrow)' },
+              { es: 'Sí / No', pronunciation: '시 / 노', ko: '네(예) / 아니오' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'sec-9-2',
+        title: '9.2 [사물 & 장소] 성별(el vs la)과 함께 외우는 핵심 명사 (Sustantivos)',
+        subtitle: '스페인어 명사는 반드시 관사(el, la)와 함께 성별을 통째로 암기해야 시험에서 틀리지 않습니다.',
+        rules: [
+          {
+            title: '일상 사물 & 학업 필수 명사',
+            description: '남성 명사는 파란색(el), 여성 명사는 주황색(la)으로 성별을 확인하세요.',
+            examples: [
+              { es: 'el libro', pronunciation: '엘 리브로', ko: '책 (남성)' },
+              { es: 'el cuaderno', pronunciation: '엘 꾸아데르노', ko: '공책 (남성)' },
+              { es: 'el bolígrafo / boli', pronunciation: '엘 볼리그라포 / 볼리', ko: '볼펜 (남성)' },
+              { es: 'el lápiz', pronunciation: '엘 라삐스', ko: '연필 (남성: 복수 los lápices)' },
+              { es: 'el teléfono / móvil', pronunciation: '엘 뗄레포노 / 모빌', ko: '전화기 / 스마트폰 (남성)' },
+              { es: 'la mesa', pronunciation: '라 메사', ko: '테이블, 탁자 (여성)' },
+              { es: 'la silla', pronunciation: '라 시야', ko: '의자 (여성)' },
+              { es: 'la mochila', pronunciation: '라 모칠라', ko: '가방, 배낭 (여성)' },
+              { es: 'la puerta', pronunciation: '라 뿌에르따', ko: '문 (여성)' },
+              { es: 'la ventana', pronunciation: '라 벤따나', ko: '창문 (여성)' },
+            ],
+          },
+          {
+            title: '도시, 건물 & 공공장소 명사 (위치 시험 단골)',
+            description: 'Hay 및 ESTAR 문장에 주어와 장소로 출제되는 필수 장소 어휘입니다.',
+            examples: [
+              { es: 'la casa', pronunciation: '라 까사', ko: '집 (여성)' },
+              { es: 'el edificio', pronunciation: '엘 에디피시오', ko: '건물, 빌딩 (남성)' },
+              { es: 'el hotel', pronunciation: '엘 오뗄', ko: '호텔 (남성: H 묵음!)' },
+              { es: 'el hospital', pronunciation: '엘 오스피딸', ko: '병원 (남성: H 묵음, 마지막 tal 강세)' },
+              { es: 'la farmacia', pronunciation: '라 파르마시아', ko: '약국 (여성)' },
+              { es: 'el banco', pronunciation: '엘 방꼬', ko: '은행 (남성)' },
+              { es: 'el cine', pronunciation: '엘 시네', ko: '영화관 (남성)' },
+              { es: 'el teatro', pronunciation: '엘 떼아뜨로', ko: '극장 (남성)' },
+              { es: 'la universidad', pronunciation: '라 우니베르시다드', ko: '대학교 (여성: -dad 끝)' },
+              { es: 'la escuela', pronunciation: '라 에스꾸엘라', ko: '학교 (여성)' },
+              { es: 'la calle', pronunciation: '라 까예', ko: '거리, 길 (여성)' },
+              { es: 'la plaza', pronunciation: '라 쁠라사', ko: '광장 (여성)' },
+              { es: 'el parque', pronunciation: '엘 빠르께', ko: '공원 (남성)' },
+            ],
+          },
+          {
+            title: '가족, 사람 & 인물 짝명사',
+            description: '남성형과 여성형이 짝을 이루는 인물 어휘입니다.',
+            examples: [
+              { es: 'el padre ↔ la madre', pronunciation: '엘 빠드레 ↔ 라 마드레', ko: '아버지 ↔ 어머니' },
+              { es: 'el hermano ↔ la hermana', pronunciation: '엘 에르마노 ↔ 라 에르마나', ko: '남자 형제 ↔ 여자 형제 (H 묵음)' },
+              { es: 'el hijo ↔ la hija', pronunciation: '엘 이호 ↔ 라 이하', ko: '아들 ↔ 딸 (H 묵음, J 목구멍 소리)' },
+              { es: 'el chico ↔ la chica', pronunciation: '엘 치꼬 ↔ 라 치까', ko: '소년 ↔ 소녀' },
+              { es: 'el amigo ↔ la amiga', pronunciation: '엘 아미고 ↔ 라 아미가', ko: '남자 친구 ↔ 여자 친구' },
+              { es: 'el profesor ↔ la profesora', pronunciation: '엘 프로페소르 ↔ 라 프로페소라', ko: '선생님, 교수님' },
+              { es: 'el estudiante ↔ la estudiante', pronunciation: '엘 에스뚜디안떼 ↔ 라 에스뚜디안떼', ko: '학생 (남녀 동형)' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'sec-9-3',
+        title: '9.3 [동작 & 상태] 시험 빈출 필수 동사 25선 (Verbos Esenciales)',
+        subtitle: '문장을 완성하는 원동력! 원형과 핵심 용법을 한 번에 정리합니다.',
+        rules: [
+          {
+            title: '존재, 정체성 & 위치 3대 기둥 동사',
+            description: '시험에서 가장 높은 배점을 차지하는 핵심 동사 3개입니다.',
+            examples: [
+              { es: 'ser', pronunciation: '세르', ko: '~이다 (본질적 성질, 직업, 국적, 이름, 날짜, 시간: Soy estudiante)' },
+              { es: 'estar', pronunciation: '에스따르', ko: '~에 있다 (위치), ~한 상태이다 (가변 상태: Está en Seúl, Está cansado)' },
+              { es: 'hay (haber)', pronunciation: '아이', ko: '~이 있다 (불특정 대상의 존재: Hay un libro en la mesa)' },
+            ],
+          },
+          {
+            title: '소통, 신상 & 의사 표현 동사',
+            description: '자기소개 및 질문·답변 시 필수적인 동사입니다.',
+            examples: [
+              { es: 'llamarse', pronunciation: '야마르세', ko: '~라고 불리다 (이름 말할 때: Me llamo Minsoo)' },
+              { es: 'hablar', pronunciation: '아블라르', ko: '말하다 (언어 구사: Hablo coreano y español / H 묵음)' },
+              { es: 'preguntar', pronunciation: '쁘레군따르', ko: '질문하다, 묻다' },
+              { es: 'responder / contestar', pronunciation: '레스뽄데르 / 꼰떼스따르', ko: '대답하다, 응답하다' },
+              { es: 'escribir', pronunciation: '에스끄리비르', ko: '쓰다, 작성하다' },
+              { es: 'leer', pronunciation: '레에르', ko: '읽다' },
+            ],
+          },
+          {
+            title: '일상 생활, 이동 & 구매 동사',
+            description: '기초 회화와 문장 작문에 가장 빈번하게 등장하는 동사들입니다.',
+            examples: [
+              { es: 'comer', pronunciation: '꼬메르', ko: '먹다' },
+              { es: 'beber', pronunciation: '베베르', ko: '마시다' },
+              { es: 'vivir', pronunciation: '비비르', ko: '살다, 거주하다 (Vivo en Chuncheon)' },
+              { es: 'estudiar', pronunciation: '에스뚜디아르', ko: '공부하다 (Estudio español)' },
+              { es: 'trabajar', pronunciation: '뜨라바하르', ko: '일하다, 근무하다' },
+              { es: 'comprar', pronunciation: '꼼쁘라르', ko: '사다, 구매하다' },
+              { es: 'ir', pronunciation: '이르', ko: '가다' },
+              { es: 'venir', pronunciation: '베니르', ko: '오다' },
+            ],
+          },
+          {
+            title: '강의 교재 & 동요 수록 특수 동사',
+            description: '슬라이드와 연습문제에 수록되어 시험에 출제되는 동사입니다.',
+            examples: [
+              { es: 'cazar', pronunciation: '까사르', ko: '사냥하다, 잡다 (동요 Tiburón bebé: ¡A cazar!)' },
+              { es: 'escapar', pronunciation: '에스까빠르', ko: '도망치다 (동요 Tiburón bebé: ¡A escapar!)' },
+              { es: 'acabar', pronunciation: '아까바르', ko: '끝나다, 마치다 (¡Se acabó! 다 끝났다!)' },
+              { es: 'ver', pronunciation: '베르', ko: '보다' },
+              { es: 'escuchar', pronunciation: '에스꾸차르', ko: '듣다' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'sec-9-4',
+        title: '9.4 [특징 & 묘사] 필수 반의어 형용사 20선 (Adjetivos y Antónimos)',
+        subtitle: '명사의 성과 수(남성 -o, 여성 -a, 복수 -s/-es)에 맞춰 짝으로 암기하는 형용사 세트',
+        rules: [
+          {
+            title: '크기, 성질 & 수량 반의어 짝',
+            description: '반대되는 의미를 짝으로 함께 외우면 어휘력이 2배로 빠르게 상승합니다.',
+            examples: [
+              { es: 'grande ↔ pequeño(a)', pronunciation: '그란데 ↔ 뻬께뇨', ko: '큰 ↔ 작은 (grande는 명사 앞 어미탈락 gran)' },
+              { es: 'bueno(a) ↔ malo(a)', pronunciation: '부에노 ↔ 말로', ko: '좋은, 착한 ↔ 나쁜 (남성단수 앞 buen, mal 탈락)' },
+              { es: 'mucho(a) ↔ poco(a)', pronunciation: '무초 ↔ 뽀꼬', ko: '많은 ↔ 적은' },
+              { es: 'nuevo(a) ↔ viejo(a)', pronunciation: '누에보 ↔ 비에호', ko: '새로운 ↔ 오래된, 낡은' },
+              { es: 'bonito(a) / guapo(a) ↔ feo(a)', pronunciation: '보니또 / 과뽀 ↔ 페오', ko: '예쁜, 멋진 ↔ 못생긴' },
+            ],
+          },
+          {
+            title: '상태, 온도, 난이도 & 감정 반의어 짝',
+            description: 'ESTAR 동사와 주로 결합하여 상태를 묘사하는 핵심 형용사입니다.',
+            examples: [
+              { es: 'caliente ↔ frío(a)', pronunciation: '깔리엔떼 ↔ 프리오', ko: '뜨거운, 따뜻한 ↔ 차가운' },
+              { es: 'abierto(a) ↔ cerrado(a)', pronunciation: '아비에르또 ↔ 세르라도', ko: '열린 ↔ 닫힌 (La puerta está cerrada)' },
+              { es: 'fácil ↔ difícil', pronunciation: '파실 ↔ 디피실', ko: '쉬운 ↔ 어려운' },
+              { es: 'alto(a) ↔ bajo(a)', pronunciation: '알또 ↔ 바호', ko: '키가 큰, 높은 ↔ 키가 작은, 낮은' },
+              { es: 'contento(a) / feliz ↔ triste', pronunciation: '꼰뗀또 / 펠리스 ↔ 뜨리스떼', ko: '기쁜, 행복한 ↔ 슬픈' },
+              { es: 'cansado(a) ↔ limpio(a)', pronunciation: '깐사도 ↔ 림삐오', ko: '피곤한 ↔ 깨끗한' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'sec-9-5',
+        title: '9.5 [스페인 문화·미식] 바르(Bar) & 식문화 필수 어휘 총정리 (Gastronomía)',
+        subtitle: '강의 3주차 & 5주차 핵심! 스페인의 음식, 음료, 와인 및 식당 주문 단어',
+        rules: [
+          {
+            title: '스페인 5대 전통 대표 요리',
+            description: '스페인 식문화 퀴즈와 단답형에 직접 출제되는 대표 음식입니다.',
+            examples: [
+              { es: 'la paella', pronunciation: '라 빠에야', ko: '빠에야 (발렌시아 지방 유래 전통 쌀 요리: 해산물/고기/샤프란)' },
+              { es: 'la tortilla de patatas', pronunciation: '라 또르띠야 데 빠따따스', ko: '스페인식 감자 오믈렛 (달걀, 감자, 양파로 두툼하게 부침)' },
+              { es: 'el jamón (jamón ibérico)', pronunciation: '엘 하몬', ko: '하몽 (도토리를 먹인 돼지 뒷다리 염장 건조 생햄 / J 목구멍 소리)' },
+              { es: 'gambas al ajillo', pronunciation: '감바스 알 아히요', ko: '마늘 올리브유 새우 요리' },
+              { es: 'el gazpacho', pronunciation: '엘 가스파초', ko: '가스파초 (안달루시아 지방의 시원한 차가운 채소 토마토 스프)' },
+              { es: 'el cochinillo asado', pronunciation: '엘 꼬치니요 아사도', ko: '새끼돼지 바비큐 통구이 (세고비아 대표 전통 요리)' },
+            ],
+          },
+          {
+            title: '바르(Bar) 음료, 주류 & 카페 메뉴',
+            description: '바르에서 주문할 때 쓰이는 단어와 표현입니다.',
+            examples: [
+              { es: 'la caña (caña de cerveza)', pronunciation: '라 까냐', ko: '생맥주 한 잔 (바르에서 가장 많이 주문하는 맥주 형태)' },
+              { es: 'la cerveza', pronunciation: '라 세르베사', ko: '맥주 (병맥주/캔맥주 포함 일반 맥주)' },
+              { es: 'el vino tinto', pronunciation: '엘 비노 띤또', ko: '레드 와인 (★ rojo가 아니라 반드시 tinto!)' },
+              { es: 'el vino blanco', pronunciation: '엘 비노 블랑꼬', ko: '화이트 와인' },
+              { es: 'la sangría', pronunciation: '라 상그리아', ko: '상그리아 (레드와인에 과일, 설탕, 탄산수를 섞은 전통 칵테일)' },
+              { es: 'el tinto de verano', pronunciation: '엘 띤또 데 베라노', ko: '레드와인에 탄산수를 탄 시원한 여름 음료' },
+              { es: 'el café solo', pronunciation: '엘 까페 솔로', ko: '에스프레소 (우유 없이 커피만)' },
+              { es: 'el café con leche', pronunciation: '엘 까페 꼰 레체', ko: '카페라떼 (커피와 우유가 1:1로 섞인 아침 인기 커피)' },
+              { es: 'el café cortado', pronunciation: '엘 까페 꼬르따도', ko: '커피에 우유를 약간만 떨어뜨린 커피' },
+              { es: 'el café americano', pronunciation: '엘 까페 아메리카노', ko: '아메리카노 (에스프레소에 뜨거운 물을 탄 커피)' },
+              { es: 'el agua mineral / agua con gas', pronunciation: '엘 아구아 미네랄 / 아구아 꼰 가스', ko: '생수(미네랄 워터) / 탄산수' },
+              { es: 'el zumo de naranja / zumo de manzana', pronunciation: '엘 수모 데 나랑하 / 만사나', ko: '오렌지 주스 / 사과 주스' },
+            ],
+          },
+          {
+            title: '디저트, 기본 식재료 & 계산 표현',
+            description: '식사를 마무리할 때 필요한 필수 어휘입니다.',
+            examples: [
+              { es: 'los churros (con chocolate)', pronunciation: '로스 추로스 (꼰 초꼴라떼)', ko: '추로스 (진한 핫초콜릿에 찍어 먹는 스페인 대표 디저트)' },
+              { es: 'el arroz con leche', pronunciation: '엘 아로스 꼰 레체', ko: '쌀 푸딩 디저트 (쌀, 우유, 계피, 설탕)' },
+              { es: 'el pan', pronunciation: '엘 빤', ko: '빵 (한국어 된소리 ㅃ)' },
+              { es: 'la sal ↔ el azúcar', pronunciation: '라 살 ↔ 엘 아수까르', ko: '소금 ↔ 설탕' },
+              { es: 'la cuenta', pronunciation: '라 꾸엔따', ko: '계산서 (La cuenta, por favor. 계산서 부탁합니다.)' },
+              { es: 'el menú del día', pronunciation: '엘 메뉴 델 디아', ko: '오늘의 코스 메뉴 (전채, 메인, 디저트, 음료 포함 점심 특선)' },
             ],
           },
         ],
