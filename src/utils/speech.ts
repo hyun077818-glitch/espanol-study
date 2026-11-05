@@ -9,13 +9,17 @@ export function playSpanishTTS(text: string) {
   // Cancel any running speech
   window.speechSynthesis.cancel();
 
-  // Clean text from blanks or underlines like "______"
+  // Clean text: strip bracketed content like [메히꼬], parenthesized text, Korean Hangul characters, and blanks
   const cleaned = text
-    .replace(/_{2,}/g, '')
-    .replace(/[()]/g, '')
+    .replace(/\[[^\]]*\]/g, '') // remove [한글발음]
+    .replace(/\([^)]*\)/g, '') // remove (한국어설명)
+    .replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '') // strip any leftover Korean characters
+    .replace(/_{2,}/g, '') // remove underlines like ______
+    .replace(/[/\\]/g, ', ') // replace slashes with pause
+    .replace(/\s+/g, ' ')
     .trim();
 
-  if (!cleaned) return;
+  if (!cleaned || !/[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ]/.test(cleaned)) return;
 
   const utterance = new SpeechSynthesisUtterance(cleaned);
   utterance.lang = 'es-ES';

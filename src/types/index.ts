@@ -73,7 +73,12 @@ export interface ChapterSection {
   rules?: {
     title: string;
     description: string;
-    examples?: { es: string; ko: string; note?: string }[];
+    examples?: {
+      es: string;
+      pronunciation?: string;
+      ko: string;
+      note?: string;
+    }[];
     table?: {
       headers: string[];
       rows: string[][];
