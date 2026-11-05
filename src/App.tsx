@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Part1Learning } from './components/Part1Learning';
 import { Part2Quiz } from './components/Part2Quiz';
+import { Part3GrammarSummary } from './components/Part3GrammarSummary';
 import { AnalysisDashboard } from './components/AnalysisDashboard';
 import { QuizResultModal } from './components/QuizResultModal';
 import { QuizSession, MistakeItem, OverallAnalysis } from './types';
@@ -16,7 +17,7 @@ import {
 import { analyzePerformance } from './utils/analysisEngine';
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState<'part1' | 'part2' | 'analysis'>('part1');
+  const [currentTab, setCurrentTab] = useState<'part1' | 'part2' | 'part3' | 'analysis'>('part1');
   const [session, setSession] = useState<QuizSession | null>(null);
   const [roundNumber, setRoundNumber] = useState<number>(1);
   const [targetChapterId, setTargetChapterId] = useState<number | null>(null);
@@ -63,7 +64,7 @@ export default function App() {
   }, []);
 
   // Refresh analysis and mistakes whenever tab changes
-  const handleSelectTab = (tab: 'part1' | 'part2' | 'analysis') => {
+  const handleSelectTab = (tab: 'part1' | 'part2' | 'part3' | 'analysis') => {
     if (tab === 'analysis') {
       setAnalysis(analyzePerformance());
       setMistakes(getStoredMistakes());
@@ -147,6 +148,13 @@ export default function App() {
             onFinishQuiz={handleFinishQuiz}
             onStartNew50Round={handleStartNextRound}
             onGoToChapter={handleNavigateToChapter}
+          />
+        )}
+
+        {currentTab === 'part3' && (
+          <Part3GrammarSummary
+            onGoToPart1={() => setCurrentTab('part1')}
+            onGoToPart2={() => setCurrentTab('part2')}
           />
         )}
 

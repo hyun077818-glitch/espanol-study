@@ -1,9 +1,9 @@
 import React from 'react';
-import { BookOpen, HelpCircle, BarChart3, RotateCw, Play } from 'lucide-react';
+import { BookOpen, HelpCircle, BarChart3, RotateCw, Play, BookMarked } from 'lucide-react';
 
 interface HeaderProps {
-  currentTab: 'part1' | 'part2' | 'analysis';
-  onSelectTab: (tab: 'part1' | 'part2' | 'analysis') => void;
+  currentTab: 'part1' | 'part2' | 'part3' | 'analysis';
+  onSelectTab: (tab: 'part1' | 'part2' | 'part3' | 'analysis') => void;
   hasActiveSession: boolean;
   roundNumber: number;
   onStartNewRound: () => void;
@@ -22,7 +22,7 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-6">
         {/* Zone 1: Single text wordmark */}
         <div className="flex items-center gap-3 whitespace-nowrap shrink-0">
           <div className="w-9 h-9 rounded-lg bg-red-600 flex items-center justify-center text-white font-bold text-lg shadow-sm">
@@ -36,23 +36,23 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
         </div>
 
-        {/* Zone 2: 3-4 clean single-line nav links */}
-        <nav className="flex items-center gap-2 sm:gap-6 text-sm font-medium text-slate-600 overflow-x-auto py-1">
+        {/* Zone 2: Navigation Links */}
+        <nav className="flex items-center gap-1.5 sm:gap-3 text-sm font-medium text-slate-600 overflow-x-auto py-1">
           <button
             onClick={() => onSelectTab('part1')}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg whitespace-nowrap shrink-0 transition-colors ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg whitespace-nowrap shrink-0 transition-colors ${
               currentTab === 'part1'
                 ? 'bg-red-50 text-red-700 font-semibold'
                 : 'hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
             <BookOpen className="w-4 h-4 text-red-600" />
-            <span>Part 1. 챕터별 이론 학습</span>
+            <span>Part 1. 챕터별 이론</span>
           </button>
 
           <button
             onClick={() => onSelectTab('part2')}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg whitespace-nowrap shrink-0 transition-colors ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg whitespace-nowrap shrink-0 transition-colors ${
               currentTab === 'part2'
                 ? 'bg-red-50 text-red-700 font-semibold'
                 : 'hover:text-slate-900 hover:bg-slate-100'
@@ -61,22 +61,37 @@ export const Header: React.FC<HeaderProps> = ({
             <HelpCircle className="w-4 h-4 text-red-600" />
             <span>Part 2. 50제 실전 퀴즈</span>
             {hasActiveSession && (
-              <span className="text-xs text-amber-700 font-bold ml-1">
+              <span className="text-[11px] text-amber-700 font-bold ml-0.5">
                 진행중
               </span>
             )}
           </button>
 
           <button
+            onClick={() => onSelectTab('part3')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg whitespace-nowrap shrink-0 transition-colors ${
+              currentTab === 'part3'
+                ? 'bg-red-50 text-red-700 font-semibold'
+                : 'hover:text-slate-900 hover:bg-slate-100'
+            }`}
+          >
+            <BookMarked className="w-4 h-4 text-red-600" />
+            <span>Part 3. 번외 문법 총정리</span>
+            <span className="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-red-100 text-red-700 ml-0.5">
+              PDF수록
+            </span>
+          </button>
+
+          <button
             onClick={() => onSelectTab('analysis')}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg whitespace-nowrap shrink-0 transition-colors ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg whitespace-nowrap shrink-0 transition-colors ${
               currentTab === 'analysis'
                 ? 'bg-red-50 text-red-700 font-semibold'
                 : 'hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
             <BarChart3 className="w-4 h-4 text-red-600" />
-            <span>취약점 분석 & 오답노트</span>
+            <span>취약점 분석</span>
             {unresolvedMistakeCount > 0 && (
               <span className="text-xs text-red-600 font-semibold">
                 ({unresolvedMistakeCount})
